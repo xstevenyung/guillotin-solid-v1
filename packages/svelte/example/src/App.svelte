@@ -1,7 +1,16 @@
-<script>
-  import Component from '@guillotin/svelte';
+<script lang="ts">
+  import { ToasterBag, addNotification } from '@guillotin/svelte';
+  import Notification from './Notification.svelte';
 </script>
 
+<ToasterBag />
+
 <main>
-  <Component />
+  <h1>Notification</h1>
+  <button
+    type="button"
+    on:click={() => {
+      addNotification(Notification, { title: 'new notification' });
+    }}>Add notification</button
+  >
 </main>

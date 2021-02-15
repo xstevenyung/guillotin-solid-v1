@@ -1,1 +1,1 @@
-export { default as default } from './Component.svelte';
+export { ToasterBag, notifications, addNotification } from './toaster';
