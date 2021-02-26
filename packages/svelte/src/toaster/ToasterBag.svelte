@@ -1,10 +1,14 @@
 <script lang="ts">
-  import { notifications } from './stores';
+  import { notifications, dismiss } from './stores';
 </script>
 
 <div class="container">
   {#each $notifications as { Component, id, ...forwardedProps } (id)}
-    <svelte:component this={Component} {...forwardedProps} />
+    <svelte:component
+      this={Component}
+      {...forwardedProps}
+      dismiss={() => dismiss(id)}
+    />
   {/each}
 </div>
 

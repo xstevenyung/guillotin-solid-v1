@@ -10,4 +10,10 @@ function addNotification(Component, data) {
   });
 }
 
-export { notifications, addNotification };
+function dismiss(id) {
+  notifications.update(($notifications) => {
+    return $notifications.filter((notification) => notification.id !== id);
+  });
+}
+
+export { notifications, addNotification, dismiss };

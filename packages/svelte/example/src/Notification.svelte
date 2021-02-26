@@ -1,5 +1,6 @@
 <script>
   export let title;
+  export let dismiss;
 </script>
 
-<div>{title}</div>
+<div on:click={dismiss}>{title}</div>
