@@ -7,10 +7,11 @@
 
 <main>
   <h1>Notification</h1>
+
   <button
     type="button"
     on:click={() => {
-      addNotification(Notification, { title: 'new notification' });
+      addNotification(Notification, { message: 'new notification' });
     }}>Add notification</button
   >
 </main>
