@@ -3,8 +3,8 @@
   import ToastWrapper from './ToastWrapper.svelte';
 </script>
 
-<div class="container">
-  {#each $notifications as { Component, id, ...forwardedProps } (id)}
+<div class="bag">
+  {#each $notifications as { Component, id, ...forwardedProps }}
     <ToastWrapper dismiss={() => dismiss(id)}>
       <svelte:component
         this={Component}
