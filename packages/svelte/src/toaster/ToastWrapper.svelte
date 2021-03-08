@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import { Timer } from './Timer';
   import { fly } from 'svelte/transition';
 

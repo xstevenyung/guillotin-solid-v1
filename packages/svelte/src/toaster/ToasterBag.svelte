@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import { notifications, dismiss } from './stores';
   import ToastWrapper from './ToastWrapper.svelte';
 </script>
@@ -16,7 +16,7 @@
 </div>
 
 <style>
-  .container {
+  .bag {
     padding: 1rem;
     position: fixed;
     right: 0;
