@@ -2,6 +2,9 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import pkg from './package.json';
+import typescript from '@rollup/plugin-typescript';
+
+const production = !process.env.ROLLUP_WATCH;
 
 const name = pkg.name
   .replace(/^(@\S+\/)?(svelte-)?(\S+)/, '$3')
@@ -10,9 +13,22 @@ const name = pkg.name
 
 export default {
   input: pkg.svelte,
+
   output: [
     { file: pkg.module, format: 'es' },
     { file: pkg.main, format: 'umd', name },
   ],
-  plugins: [svelte(), resolve(), commonjs()],
+
+  plugins: [
+    typescript({
+      sourceMap: !production,
+      inlineSources: !production,
+    }),
+
+    svelte(),
+
+    resolve(),
+
+    commonjs(),
+  ],
 };

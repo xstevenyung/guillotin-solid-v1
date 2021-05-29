@@ -1,7 +1,7 @@
 {
   "name": "@guillotin/svelte",
   "version": "0.0.4",
-  "svelte": "src/index.js",
+  "svelte": "src/index.ts",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "scripts": {
