@@ -5,8 +5,9 @@
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "scripts": {
+    "dev": "cd example && pnpm dev",
     "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
