@@ -3,6 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import pkg from './package.json';
 import typescript from '@rollup/plugin-typescript';
+import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -15,20 +16,27 @@ export default {
   input: pkg.svelte,
 
   output: [
-    { file: pkg.module, format: 'es' },
-    { file: pkg.main, format: 'umd', name },
+    { file: pkg.module, format: 'es', sourcemap: production },
+    { file: pkg.main, format: 'umd', name, sourcemap: production },
   ],
 
   plugins: [
+    commonjs(),
+
     typescript({
       sourceMap: !production,
       inlineSources: !production,
     }),
 
-    svelte(),
+    svelte({
+      dev: !production,
+      ...require('./svelte.config.cjs'),
+    }),
 
-    resolve(),
+    resolve({
+      dedupe: ['svelte'],
+    }),
 
-    commonjs(),
+    production && terser(),
   ],
 };
