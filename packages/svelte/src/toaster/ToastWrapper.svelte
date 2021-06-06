@@ -6,9 +6,8 @@
 
   export let dismiss;
   export let duration = 3000;
-
-  const TICK = 100;
-  const animationDuration = 200;
+  export let TICK = 100;
+  export let animationDuration = 200;
 
   let remainingDuration = duration;
 
@@ -34,11 +33,10 @@
   });
 
   $: {
-    percentage.set(
-      Math.round(
-        ((remainingDuration - animationDuration - TICK) * 100) / duration,
-      ),
+    const value = Math.round(
+      ((remainingDuration - animationDuration - TICK) * 100) / duration,
     );
+    percentage.set(value >= 0 ? value : 0);
   }
 </script>
 

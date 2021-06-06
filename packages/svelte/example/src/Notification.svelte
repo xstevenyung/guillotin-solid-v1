@@ -90,9 +90,9 @@
   }
 
   .progress-bar {
-    height: 1px;
+    height: 2px;
     width: 100%;
     --tw-bg-opacity: 1;
-    background-color: rgba(147, 197, 253, var(--tw-bg-opacity));
+    background-color: rgba(209, 250, 229, var(--tw-bg-opacity));
   }
 </style>
