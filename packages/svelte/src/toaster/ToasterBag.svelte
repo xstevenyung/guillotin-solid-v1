@@ -1,5 +1,5 @@
 <script>
-  import { notifications, dismiss } from './stores';
+  import { notifications, dismiss } from './store';
   import ToastWrapper from './ToastWrapper.svelte';
 
   type XPosition = 'right' | 'left' | 'center';
