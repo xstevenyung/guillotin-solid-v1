@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import { ToasterBag, addNotification } from '@guillotin/svelte';
   import Notification from './Notification.svelte';
 </script>

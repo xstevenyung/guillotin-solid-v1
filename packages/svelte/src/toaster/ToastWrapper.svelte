@@ -1,17 +1,32 @@
 <script>
-  import { Timer } from './Timer';
+  import { onMount } from 'svelte';
   import { fly } from 'svelte/transition';
 
   export let dismiss;
   export let duration = 3000;
 
-  let clientWidth;
+  const TICK = 100;
+  const animationDuration = 200;
 
-  const timer = new Timer(dismiss, duration);
+  let remainingDuration = duration - animationDuration;
 
   let timerRunning = true;
 
-  $: timerRunning ? timer.resume() : timer.pause();
+  let clientWidth;
+
+  onMount(() => {
+    const interval = setInterval(() => {
+      if (timerRunning) {
+        remainingDuration -= TICK;
+      }
+
+      if (remainingDuration <= 0) {
+        dismiss();
+      }
+    }, TICK);
+
+    return () => clearInterval(interval);
+  });
 </script>
 
 <div
@@ -19,7 +34,7 @@
   transition:fly={{
     x: clientWidth,
     delay: 0,
-    duration: 200,
+    duration: animationDuration,
   }}
   on:mouseenter={() => (timerRunning = false)}
   on:mouseleave={() => (timerRunning = true)}
