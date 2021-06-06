@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
-  import { fly } from 'svelte/transition';
+  import { scale } from 'svelte/transition';
+  import { tweened } from 'svelte/motion';
+  import { linear } from 'svelte/easing';
 
   export let dismiss;
   export let duration = 3000;
@@ -8,38 +10,46 @@
   const TICK = 100;
   const animationDuration = 200;
 
-  let remainingDuration = duration - animationDuration;
+  let remainingDuration = duration;
 
   let timerRunning = true;
-
-  let clientWidth;
 
   onMount(() => {
     const interval = setInterval(() => {
       if (timerRunning) {
         remainingDuration -= TICK;
       }
-
-      if (remainingDuration <= 0) {
-        dismiss();
-      }
     }, TICK);
 
     return () => clearInterval(interval);
   });
+
+  $: if (remainingDuration - animationDuration <= 0) {
+    dismiss();
+  }
+
+  const percentage = tweened(100, {
+    duration: TICK,
+    easing: linear,
+  });
+
+  $: {
+    percentage.set(
+      Math.round(
+        ((remainingDuration - animationDuration - TICK) * 100) / duration,
+      ),
+    );
+  }
 </script>
 
 <div
-  bind:clientWidth
-  transition:fly={{
-    x: clientWidth,
-    delay: 0,
+  transition:scale={{
     duration: animationDuration,
   }}
   on:mouseenter={() => (timerRunning = false)}
   on:mouseleave={() => (timerRunning = true)}
 >
-  <slot />
+  <slot percentage={$percentage} />
 </div>
 
 <style>

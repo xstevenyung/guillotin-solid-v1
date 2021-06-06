@@ -4,11 +4,12 @@
 </script>
 
 <div class="bag">
-  {#each $notifications as { Component, id, ...forwardedProps }}
-    <ToastWrapper dismiss={() => dismiss(id)}>
+  {#each $notifications as { Component, id, ...forwardedProps } (id)}
+    <ToastWrapper dismiss={() => dismiss(id)} let:percentage>
       <svelte:component
         this={Component}
         {...forwardedProps}
+        {percentage}
         dismiss={() => dismiss(id)}
       />
     </ToastWrapper>

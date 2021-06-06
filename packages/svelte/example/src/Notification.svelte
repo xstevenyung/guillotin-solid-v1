@@ -1,6 +1,7 @@
 <script>
   export let dismiss;
   export let message;
+  export let percentage;
 </script>
 
 <div class="container">
@@ -39,6 +40,8 @@
 
     <p class="message">{message}</p>
   </div>
+
+  <div class="progress-bar" style={`width: ${percentage}%;`} />
 </div>
 
 <style>
@@ -84,5 +87,12 @@
   .content {
     display: flex;
     align-items: center;
+  }
+
+  .progress-bar {
+    height: 1px;
+    width: 100%;
+    --tw-bg-opacity: 1;
+    background-color: rgba(147, 197, 253, var(--tw-bg-opacity));
   }
 </style>
