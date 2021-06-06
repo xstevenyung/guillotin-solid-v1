@@ -3,17 +3,25 @@
   import { scale } from 'svelte/transition';
   import { tweened } from 'svelte/motion';
   import { linear } from 'svelte/easing';
+  import {
+    DEFAULT_ANIMATION_DURATION,
+    DEFAULT_DURATION,
+    TICK,
+  } from './constants';
 
   export let dismiss;
-  export let duration = 3000;
-  export let TICK = 100;
-  export let animationDuration = 200;
+  export let duration = DEFAULT_DURATION;
+  export let animationDuration = DEFAULT_ANIMATION_DURATION;
 
   let remainingDuration = duration;
 
   let timerRunning = true;
 
   onMount(() => {
+    if (remainingDuration === null) {
+      return;
+    }
+
     const interval = setInterval(() => {
       if (timerRunning) {
         remainingDuration -= TICK;
@@ -23,7 +31,10 @@
     return () => clearInterval(interval);
   });
 
-  $: if (remainingDuration - animationDuration <= 0) {
+  $: if (
+    remainingDuration !== null &&
+    remainingDuration - animationDuration <= 0
+  ) {
     dismiss();
   }
 
@@ -32,7 +43,7 @@
     easing: linear,
   });
 
-  $: {
+  $: if (remainingDuration !== null) {
     const value = Math.round(
       ((remainingDuration - animationDuration - TICK) * 100) / duration,
     );

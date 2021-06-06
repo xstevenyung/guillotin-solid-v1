@@ -25,7 +25,10 @@
     <button
       type="button"
       on:click={() => {
-        addNotification(Notification, { message: 'new notification' });
+        addNotification(Notification, {
+          message: 'new notification',
+          duration: null,
+        });
       }}>Add notification</button
     >
   </section>
