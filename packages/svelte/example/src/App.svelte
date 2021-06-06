@@ -3,7 +3,7 @@
   import Notification from './Notification.svelte';
 </script>
 
-<ToasterBag />
+<ToasterBag x="center" y="top" />
 
 <main>
   <h1>Notification</h1>

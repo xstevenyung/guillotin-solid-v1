@@ -1,9 +1,16 @@
 <script>
   import { notifications, dismiss } from './stores';
   import ToastWrapper from './ToastWrapper.svelte';
+
+  type XPosition = 'right' | 'left' | 'center';
+
+  type YPosition = 'top' | 'bottom';
+
+  export let x: XPosition = 'right';
+  export let y: YPosition = 'bottom';
 </script>
 
-<div class="bag">
+<div class={['bag', x, y].join(' ')}>
   {#each $notifications as { Component, id, ...forwardedProps } (id)}
     <ToastWrapper dismiss={() => dismiss(id)} let:percentage>
       <svelte:component
@@ -20,8 +27,23 @@
   .bag {
     padding: 1rem;
     position: fixed;
-    right: 0;
-    bottom: 0;
     z-index: 99999;
+  }
+
+  .bag.right {
+    right: 0;
+  }
+
+  .bag.left {
+    left: 0;
+  }
+
+  .bag.bottom {
+    bottom: 0;
+  }
+
+  .bag.center {
+    left: 50%;
+    transform: translateX(-50%);
   }
 </style>
