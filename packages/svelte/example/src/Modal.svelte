@@ -1,12 +1,12 @@
 <script>
-  import { setModal } from '@guillotin/svelte';
+  import { modalStore } from '@guillotin/svelte';
   import SecondModal from './SecondModal.svelte';
 
   export let close;
 </script>
 
 <div class="container">
-  <button type="button" on:click={() => setModal(SecondModal)}
+  <button type="button" on:click={() => modalStore.setModal(SecondModal)}
     >Open second modal</button
   >
   <button type="button" on:click={close}>Close</button>

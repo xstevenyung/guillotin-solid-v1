@@ -1,5 +1,5 @@
 {
-  "name": "@guillotin/svelte",
+  "name": "@guillotin/core",
   "version": "0.0.4",
   "svelte": "svelte/index.js",
   "module": "dist/index.mjs",
@@ -30,8 +30,5 @@
   "files": [
     "src",
     "dist"
-  ],
-  "dependencies": {
-    "@guillotin/core": "workspace:^0.0.4"
-  }
+  ]
 }

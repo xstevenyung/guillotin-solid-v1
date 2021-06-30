@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "svelte": "pnpm --filter @guillotin/svelte"
+    "svelte": "pnpm --filter @guillotin/svelte",
+    "vue": "pnpm --filter @guillotin/vue"
   },
   "prettier": "@recodable/prettier-config",
   "devDependencies": {

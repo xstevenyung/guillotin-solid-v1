@@ -1,14 +1,16 @@
+<svelte:options tag="guillotin-modal-background" />
+
 <script>
-  export let close;
+  import modal from "./store"
+  // export let close;
   export let backgroundColor = 'rgba(229, 231, 235)';
   export let opacity = 0.8;
-  export let zIndex = 99999;
 </script>
 
 <div
-  on:click={close}
+  on:click={modal.closeModal}
   class="background"
-  style={`opacity: ${opacity}; background-color: ${backgroundColor}; z-index: ${zIndex}`}
+  style={`opacity: ${opacity}; background-color: ${backgroundColor};`}
 />
 
 <style>

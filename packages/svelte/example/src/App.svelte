@@ -1,36 +1,34 @@
 <script>
   import {
-    ToasterBag,
-    addNotification,
+    // ToasterBag,
+    // addNotification,
     ModalOutlet,
-    setModal,
-    ModalBackground,
+    modalStore,
+    // ModalBackground,
   } from '@guillotin/svelte';
-  import Notification from './Notification.svelte';
+  // import Notification from './Notification.svelte';
   import Modal from './Modal.svelte';
 </script>
 
-<ToasterBag x="center" y="top" />
+<!-- <ToasterBag x="center" y="top" /> -->
 
 <ModalOutlet>
-  <div slot="background" let:close>
-    <ModalBackground backgroundColor="rgba(147, 197, 253)" {close} />
-  </div>
+  <!-- <div slot="background">
+    <ModalBackground backgroundColor="rgba(147, 197, 253)" />
+  </div> -->
 </ModalOutlet>
 
 <main>
   <section>
     <h1>Notification</h1>
 
-    <button
-      type="button"
-      on:click={() => {
+    <!-- on:click={() => {
         addNotification(Notification, {
           message: 'new notification',
           duration: null,
         });
-      }}>Add notification</button
-    >
+      }} -->
+    <button type="button">Add notification</button>
   </section>
 
   <section>
@@ -39,7 +37,7 @@
     <button
       type="button"
       on:click={() => {
-        setModal(Modal);
+        modalStore.setModal(Modal);
       }}>Open Modal</button
     >
   </section>
