@@ -54,12 +54,6 @@ export default {
     },
   },
 
-  // methods: {
-  //   close() {
-  //     return modalStore.closeModal();
-  //   },
-  // },
-
   watch: {
     zIndex: {
       handler(val) {

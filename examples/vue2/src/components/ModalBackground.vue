@@ -23,7 +23,6 @@ export default {
   mounted() {
     if (this.close !== null) {
       this.$refs.el.close = this.close;
-      console.log(this.$refs.el);
     }
 
     if (this.backgroundColor !== null) {
