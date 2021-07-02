@@ -1,7 +1,9 @@
 <template>
   <guillotin-modal-outlet ref="el">
     <div slot="background">
-      <ModalBackground />
+      <slot name="background">
+        <ModalBackground />
+      </slot>
     </div>
 
     <div slot="content">

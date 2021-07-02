@@ -2,19 +2,24 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <ModalOutlet />
+    <ModalOutlet>
+      <template v-slot:background>
+        <ModalBackground backgroundColor="green" />
+      </template>
+    </ModalOutlet>
 
     <button type="button" @click="open">Open modal</button>
   </div>
 </template>
 
 <script>
-import { ModalOutlet, setModal } from '@guillotin/vue';
+import { ModalOutlet, ModalBackground, setModal } from '@guillotin/vue';
 import HelloWorld from './components/HelloWorld.vue';
 
 export default {
   components: {
     ModalOutlet,
+    ModalBackground,
   },
 
   methods: {
