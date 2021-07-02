@@ -1,7 +1,10 @@
 <script>
+  import { getPercentage } from "@guillotin/core"
+
   export let dismiss;
   export let message;
-  export let percentage;
+
+  const percentage = getPercentage()
 </script>
 
 <div class="container">
@@ -41,7 +44,7 @@
     <p class="message">{message}</p>
   </div>
 
-  <div class="progress-bar" style={`width: ${percentage}%;`} />
+  <div class="progress-bar" style={`width: ${$percentage}%;`} />
 </div>
 
 <style>

@@ -3,13 +3,12 @@
 <script>
   import { onMount } from 'svelte';
   import { scale } from 'svelte/transition';
-  import { tweened } from 'svelte/motion';
-  import { linear } from 'svelte/easing';
   import {
     DEFAULT_ANIMATION_DURATION,
     DEFAULT_DURATION,
     TICK,
   } from './constants';
+  import { initPercentage } from "./percentage"
 
   export let dismiss;
   export let duration = DEFAULT_DURATION;
@@ -40,15 +39,13 @@
     dismiss();
   }
 
-  const percentage = tweened(100, {
-    duration: TICK,
-    easing: linear,
-  });
+  const percentage = initPercentage()
 
   $: if (remainingDuration !== null) {
     const value = Math.round(
       ((remainingDuration - animationDuration - TICK) * 100) / duration,
     );
+
     percentage.set(value >= 0 ? value : 0);
   }
 </script>
@@ -58,7 +55,7 @@
   on:mouseenter={() => (timerRunning = false)}
   on:mouseleave={() => (timerRunning = true)}
 >
-  <slot percentage={$percentage} />
+  <slot />
 </div>
 
 <style>

@@ -36,13 +36,27 @@
       <p class="message">{{ message }}</p>
     </div>
 
-    <!-- <div class="progress-bar" :style="`width: ${percentage}%;` /> -->
+    <div class="progress-bar" :style="{ width: `${percentage}%` }" />
   </div>
 </template>
 
 <script>
+import { getPercentage } from '@guillotin/core';
+
 export default {
-  props: ['dismiss', 'message', 'percentage'],
+  props: ['dismiss', 'message'],
+
+  mounted() {
+    getPercentage().subscribe(percentage => {
+      this.percentage = percentage;
+    });
+  },
+
+  data() {
+    return {
+      percentage: null,
+    };
+  },
 };
 </script>
 

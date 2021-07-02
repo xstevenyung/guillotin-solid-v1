@@ -11,14 +11,12 @@
     {#each $toasterStore as { Component, id, duration = toasterConstants.DEFAULT_DURATION, animationDuration = toasterConstants.DEFAULT_ANIMATION_DURATION, ...forwardedProps } (id)}
       <ToastWrapper
         dismiss={() => toasterStore.dismiss(id)}
-        let:percentage
         {duration}
         {animationDuration}
       >
         <svelte:component
           this={Component}
           {...forwardedProps}
-          {percentage}
           dismiss={() => toasterStore.dismiss(id)}
         />
       </ToastWrapper>
