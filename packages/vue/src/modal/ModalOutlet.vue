@@ -31,11 +31,16 @@ export default {
       this.$refs.el.zIndex = this.zIndex;
     }
 
-    modalStore.subscribe(state => {
+    this.unsubscribeFn = modalStore.subscribe(state => {
       Object.entries(state).forEach(([key, value]) => {
         this[key] = value;
       });
     });
+  },
+
+  destroyed() {
+    if (!this.unsubscribeFn) return;
+    this.unsubscribeFn();
   },
 
   props: {
@@ -47,7 +52,10 @@ export default {
 
   data() {
     unsubscribe();
-    return initialData;
+    return {
+      ...initialData,
+      unsubscribeFn: null,
+    };
   },
 
   computed: {

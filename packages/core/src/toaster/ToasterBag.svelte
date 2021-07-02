@@ -1,22 +1,24 @@
 <svelte:options tag="guillotin-toaster-bag" />
 
+<script context="module">
+  export type XPosition = 'right' | 'left' | 'center';
+  export type YPosition = 'top' | 'bottom';
+</script>
+
 <script>
-  import { DEFAULT_ANIMATION_DURATION, DEFAULT_DURATION } from './constants';
-  import { notifications, dismiss } from './store';
-  import ToastWrapper from './ToastWrapper.svelte';
-
-  type XPosition = 'right' | 'left' | 'center';
-
-  type YPosition = 'top' | 'bottom';
+  // import { DEFAULT_ANIMATION_DURATION, DEFAULT_DURATION } from './constants';
+  // import notifications from './store';
+  // import ToastWrapper from './ToastWrapper.svelte';
 
   export let x: XPosition = 'right';
   export let y: YPosition = 'bottom';
 </script>
 
 <div class={['bag', x, y].join(' ')}>
-  {#each $notifications as { Component, id, duration = DEFAULT_DURATION, animationDuration = DEFAULT_ANIMATION_DURATION, ...forwardedProps } (id)}
+  <slot name="content" />
+  <!-- {#each $notifications as { Component, id, duration = DEFAULT_DURATION, animationDuration = DEFAULT_ANIMATION_DURATION, ...forwardedProps } (id)}
     <ToastWrapper
-      dismiss={() => dismiss(id)}
+      dismiss={() => notifications.dismiss(id)}
       let:percentage
       {duration}
       {animationDuration}
@@ -25,10 +27,10 @@
         this={Component}
         {...forwardedProps}
         {percentage}
-        dismiss={() => dismiss(id)}
+        dismiss={() => notifications.dismiss(id)}
       />
     </ToastWrapper>
-  {/each}
+  {/each} -->
 </div>
 
 <style>
