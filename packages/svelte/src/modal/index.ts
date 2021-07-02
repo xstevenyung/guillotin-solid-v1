@@ -1,3 +1,2 @@
 export { default as ModalOutlet } from './ModalOutlet.svelte';
-// export { default as ModalBackground } from './ModalBackground.svelte';
-export { modalStore } from '@guillotin/core';
+export { modalStore, ModalBackground } from '@guillotin/core';

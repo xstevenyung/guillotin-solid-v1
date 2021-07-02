@@ -6,7 +6,9 @@
 
 <BaseModalOutlet {zIndex}>
   <div slot="background">
-    <BaseModalBackground />
+    <slot name="background">
+      <BaseModalBackground />
+    </slot>
   </div>
 
   <div slot="content">

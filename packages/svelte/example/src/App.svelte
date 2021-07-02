@@ -4,7 +4,7 @@
     // addNotification,
     ModalOutlet,
     modalStore,
-    // ModalBackground,
+    ModalBackground,
   } from '@guillotin/svelte';
   // import Notification from './Notification.svelte';
   import Modal from './Modal.svelte';
@@ -13,9 +13,9 @@
 <!-- <ToasterBag x="center" y="top" /> -->
 
 <ModalOutlet>
-  <!-- <div slot="background">
-    <ModalBackground backgroundColor="rgba(147, 197, 253)" />
-  </div> -->
+  <div slot="background">
+    <ModalBackground backgroundColor="red" />
+  </div>
 </ModalOutlet>
 
 <main>

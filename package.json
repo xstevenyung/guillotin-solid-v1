@@ -2,7 +2,9 @@
   "scripts": {
     "core": "pnpm --filter @guillotin/core",
     "svelte": "pnpm --filter @guillotin/svelte",
-    "vue": "pnpm --filter @guillotin/vue"
+    "dev:svelte": "pnpm core build && pnpm svelte build && pnpm svelte dev",
+    "vue": "pnpm --filter @guillotin/vue",
+    "dev:vue": "pnpm core build && pnpm vue build && pnpm vue dev"
   },
   "prettier": "@recodable/prettier-config",
   "devDependencies": {
