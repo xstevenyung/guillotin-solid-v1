@@ -54,9 +54,7 @@
 </script>
 
 <div
-  transition:scale={{
-    duration: animationDuration,
-  }}
+  transition:scale={{ duration: animationDuration }}
   on:mouseenter={() => (timerRunning = false)}
   on:mouseleave={() => (timerRunning = true)}
 >

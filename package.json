@@ -6,6 +6,6 @@
   },
   "prettier": "@recodable/prettier-config",
   "devDependencies": {
-    "@recodable/prettier-config": "^0.0.1"
+    "@recodable/prettier-config": "^1.0.1"
   }
 }

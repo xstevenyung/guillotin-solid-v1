@@ -12,30 +12,34 @@ const name = pkg.name
   .replace(/^\w/, m => m.toUpperCase())
   .replace(/-\w/g, m => m[1].toUpperCase());
 
-export default {
-  input: pkg.svelte,
+const plugins = [
+  commonjs(),
 
-  output: [
-    { file: pkg.module, format: 'es', sourcemap: production },
-    { file: pkg.main, format: 'umd', name, sourcemap: production },
-  ],
+  typescript({
+    inlineSources: !production,
+  }),
 
-  plugins: [
-    commonjs(),
+  svelte({
+    dev: !production,
+    ...require('./svelte.config.cjs'),
+  }),
 
-    typescript({
-      inlineSources: !production,
-    }),
+  resolve({
+    dedupe: ['svelte'],
+  }),
 
-    svelte({
-      dev: !production,
-      ...require('./svelte.config.cjs'),
-    }),
+  production && terser(),
+];
 
-    resolve({
-      dedupe: ['svelte'],
-    }),
+export default [
+  {
+    input: pkg.svelte,
 
-    production && terser(),
-  ],
-};
+    output: [
+      { file: pkg.module, format: 'es', sourcemap: production },
+      { file: pkg.main, format: 'umd', name, sourcemap: production },
+    ],
+
+    plugins,
+  },
+];
