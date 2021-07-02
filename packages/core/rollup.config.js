@@ -36,6 +36,6 @@ export default {
       dedupe: ['svelte'],
     }),
 
-    // production && terser(),
+    production && terser(),
   ],
 };

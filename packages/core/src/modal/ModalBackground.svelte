@@ -2,7 +2,7 @@
 
 <script>
   import modal from "./store"
-  // export let close;
+  
   export let backgroundColor = 'rgba(229, 231, 235)';
   export let opacity = 0.8;
 </script>

@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "core": "pnpm --filter @guillotin/core",
     "svelte": "pnpm --filter @guillotin/svelte",
     "vue": "pnpm --filter @guillotin/vue"
   },

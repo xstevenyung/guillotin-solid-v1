@@ -4,13 +4,9 @@
 	export let zIndex =	99999;
 </script>
 
-<BaseModalOutlet
-  {zIndex}
-  close={modalStore.closeModal}
-  isVisible={!!$modalStore.Component}
->
+<BaseModalOutlet {zIndex}>
   <div slot="background">
-    <BaseModalBackground close={modalStore.closeModal} />
+    <BaseModalBackground />
   </div>
 
   <div slot="content">

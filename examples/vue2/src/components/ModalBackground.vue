@@ -1,5 +1,5 @@
 <template>
-  <guillotin-modal-background ref="el"></guillotin-modal-background>
+  <guillotin-modal-background ref="el" />
 </template>
 
 <script>
@@ -7,8 +7,6 @@ import '@guillotin/core';
 
 export default {
   props: {
-    close: Function,
-
     backgroundColor: {
       type: String,
       default: null,
@@ -21,10 +19,6 @@ export default {
   },
 
   mounted() {
-    if (this.close !== null) {
-      this.$refs.el.close = this.close;
-    }
-
     if (this.backgroundColor !== null) {
       this.$refs.el.backgroundColor = this.backgroundColor;
     }
@@ -35,14 +29,6 @@ export default {
   },
 
   watch: {
-    close: {
-      handler(val) {
-        if (val !== null) {
-          this.$refs.el.close = val;
-        }
-      },
-    },
-
     backgroundColor: {
       handler(val) {
         if (val !== null) {
