@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import '@guillotin/core';
+import { ModalBackground } from '@guillotin/core';
 
 export default {
   props: {
@@ -19,6 +19,8 @@ export default {
   },
 
   mounted() {
+    customElements.define('guillotin-modal-background', ModalBackground);
+
     if (this.backgroundColor !== null) {
       this.$refs.el.backgroundColor = this.backgroundColor;
     }

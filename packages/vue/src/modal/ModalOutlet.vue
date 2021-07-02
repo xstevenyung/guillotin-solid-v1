@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import '@guillotin/core';
+import { ModalOutlet } from '@guillotin/core';
 import { modalStore } from '@guillotin/core';
 import ModalBackground from './ModalBackground.vue';
 
@@ -27,6 +27,8 @@ export default {
   components: { ModalBackground },
 
   mounted() {
+    customElements.define('guillotin-modal-outlet', ModalOutlet);
+
     if (this.zIndex !== null) {
       this.$refs.el.zIndex = this.zIndex;
     }

@@ -1,4 +1,4 @@
-<svelte:options tag="guillotin-modal-outlet" />
+<svelte:options tag={null} />
 
 <script>
   import modal from './store';

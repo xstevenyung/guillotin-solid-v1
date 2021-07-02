@@ -1,10 +1,11 @@
 <script>
-  import { getPercentage } from "@guillotin/core"
+  // import { getPercentage } from "@guillotin/core"
 
   export let dismiss;
   export let message;
+  export let percentage;
 
-  const percentage = getPercentage()
+  // const percentage = getPercentage()
 </script>
 
 <div class="container">

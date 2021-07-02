@@ -1,4 +1,4 @@
-<svelte:options tag="guillotin-modal-background" />
+<svelte:options tag={null} />
 
 <script>
   import modal from "./store"

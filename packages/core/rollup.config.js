@@ -28,7 +28,7 @@ const plugins = [
     dedupe: ['svelte'],
   }),
 
-  production && terser(),
+  // production && terser(),
 ];
 
 export default [

@@ -2,13 +2,16 @@
   <guillotin-toaster-bag ref="el">
     <div slot="content">
       <div v-for="notification in notifications" :key="notification.id">
-        <ToasterWrapper :dismiss="() => toasterStore.dismiss(notification.id)">
+        <ToastWrapper
+          :dismiss="() => toasterStore.dismiss(notification.id)"
+          :percentage="notification.percentage"
+        >
           <component
             :is="notification.Component"
             v-bind="notification"
             :dismiss="() => toasterStore.dismiss(notification.id)"
           />
-        </ToasterWrapper>
+        </ToastWrapper>
       </div>
       <!-- {#each $toasterStore as { Component, id, duration = toasterConstants.DEFAULT_DURATION, animationDuration = toasterConstants.DEFAULT_ANIMATION_DURATION, ...forwardedProps } (id)}
       <ToastWrapper
@@ -30,9 +33,9 @@
 </template>
 
 <script>
-import '@guillotin/core';
+import { ToasterBag } from '@guillotin/core';
 import { toasterStore } from '@guillotin/core';
-import ToasterWrapper from './ToastWrapper.vue';
+import ToastWrapper from './ToastWrapper.vue';
 
 let initialData = [];
 
@@ -41,10 +44,12 @@ const unsubscribe = toasterStore.subscribe(notifications => {
 });
 
 export default {
-  components: { ToasterWrapper },
+  components: { ToastWrapper },
 
   // TODO: handle types from core
   mounted() {
+    customElements.define('guillotin-toaster-bag', ToasterBag);
+
     this.$refs.el.x = this.x;
     this.$refs.el.y = this.y;
 

@@ -1,14 +1,12 @@
-<svelte:options tag="guillotin-toaster-bag" />
-
-<script context="module">
-  export type XPosition = 'right' | 'left' | 'center';
-  export type YPosition = 'top' | 'bottom';
-</script>
+<svelte:options tag={null} />
 
 <script>
   // import { DEFAULT_ANIMATION_DURATION, DEFAULT_DURATION } from './constants';
   // import notifications from './store';
   // import ToastWrapper from './ToastWrapper.svelte';
+
+  type XPosition = 'right' | 'left' | 'center';
+  type YPosition = 'top' | 'bottom';
 
   export let x: XPosition = 'right';
   export let y: YPosition = 'bottom';
