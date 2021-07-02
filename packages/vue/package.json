@@ -9,14 +9,17 @@
   },
   "dependencies": {
     "@guillotin/core": "workspace:^0.0.4",
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "core-js": "^3.6.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "typescript": "~4.1.5",
+    "vue": "^2.6.14",
     "vue-template-compiler": "^2.6.11"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.14"
   }
 }

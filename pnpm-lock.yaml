@@ -135,17 +135,17 @@ importers:
       '@vue/cli-service': ~4.5.0
       core-js: ^3.6.5
       typescript: ~4.1.5
-      vue: ^2.6.11
+      vue: ^2.6.14
       vue-template-compiler: ^2.6.11
     dependencies:
       '@guillotin/core': link:../core
       core-js: 3.15.2
-      vue: 2.6.14
     devDependencies:
       '@vue/cli-plugin-babel': 4.5.13_ff590b0de5aca690f3f4042d35869c4a
       '@vue/cli-plugin-typescript': 4.5.13_1ad3d9b08fafaaf3c6cc81ff9fcd3e8b
       '@vue/cli-service': 4.5.13_cc1beb3c1e492e7da85d8dc8dbc92898
       typescript: 4.1.6
+      vue: 2.6.14
       vue-template-compiler: 2.6.14
 
   packages/vue/example:
@@ -9086,7 +9086,6 @@ packages:
 
   /vue/2.6.14:
     resolution: {integrity: sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==}
-    dev: false
 
   /watchpack-chokidar2/2.0.1:
     resolution: {integrity: sha512-nCFfBIPKr5Sh61s4LPpy1Wtfi0HE8isJ3d2Yb5/Ppw2P2B/3eVSEBjKfN0fmHJSK14+31KwMKmcrzs2GM4P0Ww==}
