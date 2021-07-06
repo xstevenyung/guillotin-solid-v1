@@ -1,0 +1,19 @@
+{
+  "name": "tmp",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^2.3.8",
+    "vite-plugin-solid": "^2.0.0"
+  },
+  "dependencies": {
+    "solid-element": "^1.0.0",
+    "solid-js": "^1.0.0"
+  }
+}

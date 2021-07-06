@@ -16,8 +16,7 @@
       <svelte:component
         this={$modalStore.Component}
         {...$modalStore.data}
-        close={modalStore.closeModal}
-      />
+        close={modalStore.closeModal} />
     {/if}
   </div>
 </BaseModalOutlet>

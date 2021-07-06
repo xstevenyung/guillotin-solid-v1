@@ -10,10 +10,9 @@
 <svelte:window
   on:keydown={e => {
     if ($modal.Component && e.code === 'Escape') {
-      modal.closeModal();
+      modal.closeModal()
     }
-  }}
-/>
+  }} />
 
 {#if $modal.Component}
   <div transition:fade={{ duration: 200 }} class="container">

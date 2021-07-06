@@ -1,15 +1,14 @@
-import { writable } from 'svelte/store';
+import Background from './Background'
+import { createStore } from 'solid-js/store'
 
-const modal = writable({ Component: null, data: {} });
+const closeState = {
+  Component: null,
+  Background: () => Background,
+  data: {},
+}
 
-export default {
-  subscribe: modal.subscribe,
+const [modal, setModal] = createStore({ ...closeState })
 
-  setModal: (Component, data = {}) => {
-    return modal.set({ Component, data });
-  },
+const closeModal = () => setModal({ ...closeState })
 
-  closeModal: () => {
-    return modal.set({ Component: null, data: {} });
-  },
-};
+export { modal, setModal, closeModal }

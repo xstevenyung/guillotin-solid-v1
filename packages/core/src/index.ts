@@ -1,8 +1,7 @@
-export {
-  ToasterBag,
-  ToastWrapper,
-  toasterStore,
-  toasterConstants,
-} from './toaster';
+import { customElement } from 'solid-element'
+import { ModalOutlet, ModalBackground } from './modal/index'
 
-export { ModalOutlet, modalStore, ModalBackground } from './modal';
+customElement('guillotin-modal-outlet', {}, ModalOutlet)
+customElement('guillotin-modal-background', {}, ModalBackground)
+
+export { setModal, closeModal } from './modal/index'
