@@ -1,0 +1,19 @@
+{
+  "name": "@guillotin/solid",
+  "version": "0.0.4",
+  "description": "",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^2.3.8",
+    "vite-plugin-solid": "^2.0.0"
+  },
+  "dependencies": {
+    "solid-js": "^1.0.0",
+    "solid-styled-components": "^0.27.1"
+  }
+}
