@@ -21,7 +21,13 @@ const ToasterBag: Component<Props> = props => {
       <For each={notifications()}>
         {notification => (
           <ToastWrapper dismiss={() => dismissNotification(notification)}>
-            <Dynamic component={notification.Component} />
+            {context => (
+              <Dynamic
+                component={notification.Component}
+                context={context}
+                {...notification.data}
+              />
+            )}
           </ToastWrapper>
         )}
       </For>

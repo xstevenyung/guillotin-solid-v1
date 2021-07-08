@@ -2,21 +2,20 @@ import { DEFAULT_DURATION, TICK } from './constants';
 import {
   Component,
   createSignal,
-  // JSXElement,
+  JSXElement,
   onCleanup,
   createEffect,
-  createContext,
 } from 'solid-js';
-// import type { Accessor} from "solid-js"
+import type { Accessor} from "solid-js"
 
-// type Context = {
-//   percentage: Accessor<number>;
-// };
+type Context = {
+  percentage: Accessor<number>;
+};
 
 export type Props = {
   dismiss: () => any;
   duration?: number;
-  // children: (context: Context) => JSXElement;
+  children: (context: Context) => JSXElement;
 };
 
 const ToastWrapper: Component<Props> = props => {
@@ -34,8 +33,9 @@ const ToastWrapper: Component<Props> = props => {
 
   const percentage = () => {
     const computed = Math.round(
-      (remainingDuration() * 100) / props.duration || DEFAULT_DURATION,
+      (remainingDuration() * 100) / (props.duration || DEFAULT_DURATION),
     );
+
     return computed >= 0 ? computed : 0;
   };
 
@@ -51,16 +51,10 @@ const ToastWrapper: Component<Props> = props => {
 
   return (
     <div
-      // transition:scale={{
-      //   duration: animationDuration,
-      // }}
       onMouseEnter={() => setTimerRunning(false)}
       onmouseleave={() => setTimerRunning(true)}
     >
-      {/* TODO: dynamic percentage */}
-      <ToastContext.Provider value={{ percentage }}>
-        {props.children}
-      </ToastContext.Provider>
+      {props.children({ percentage })}
     </div>
   );
 };
