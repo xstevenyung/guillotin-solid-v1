@@ -6,7 +6,7 @@ import {
   onCleanup,
   createEffect,
 } from 'solid-js';
-import type { Accessor} from "solid-js"
+import type { Accessor } from 'solid-js';
 
 type Context = {
   percentage: Accessor<number>;
@@ -18,7 +18,7 @@ export type Props = {
   children: (context: Context) => JSXElement;
 };
 
-const ToastWrapper: Component<Props> = props => {
+const ToastWrapper: Component<Props> = (props) => {
   const [remainingDuration, setRemainingDuration] = createSignal(
     props.duration || DEFAULT_DURATION,
   );
