@@ -8,11 +8,11 @@ type Props = {
   zIndex?: number;
 };
 
-const ModalOutlet: Component<Props> = props => {
+const ModalOutlet: Component<Props> = (props) => {
   props = mergeProps({ zIndex: 99999 }, props);
 
   onMount(() => {
-    window.addEventListener('keydown', e => {
+    window.addEventListener('keydown', (e) => {
       if (!!modal.Component && e.code === 'Escape') {
         closeModal();
       }

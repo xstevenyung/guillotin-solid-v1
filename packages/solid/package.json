@@ -2,12 +2,23 @@
   "name": "@guillotin/solid",
   "version": "0.0.4",
   "description": "",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
   "scripts": {
     "start": "vite",
     "dev": "vite",
     "build": "vite build"
   },
-  "license": "MIT",
   "devDependencies": {
     "vite": "^2.3.8",
     "vite-plugin-solid": "^2.0.0"

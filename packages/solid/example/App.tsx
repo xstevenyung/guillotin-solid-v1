@@ -13,7 +13,7 @@ const App: Component = () => {
 
       <button
         type="button"
-        onClick={() => setModal({ Component: ExampleModal })}
+        onClick={() => setModal({ Component: ExampleModal, data: {} })}
       >
         open modal
       </button>

@@ -1,6 +1,6 @@
 import { createStore } from 'solid-js/store';
 
-const closedState = { Component: null };
+const closedState = { Component: null, data: {} };
 
 const [modal, setModal] = createStore({ ...closedState });
 
