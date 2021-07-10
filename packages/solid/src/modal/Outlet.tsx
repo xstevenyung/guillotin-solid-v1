@@ -45,6 +45,5 @@ const Content = styled('div')`
   position: fixed;
   left: 50%;
   top: 50%;
-  transform: translate(-50%);
-  background-color: #fff;
+  transform: translate(-50%, -50%);
 `;
