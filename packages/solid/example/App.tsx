@@ -1,4 +1,4 @@
-import { Component, useContext } from 'solid-js';
+import type { Component } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { ModalOutlet, setModal } from '../src/modal';
 import { ToasterBag, addNotification } from '../src/toaster';

@@ -18,9 +18,12 @@
   "scripts": {
     "start": "vite",
     "dev": "vite",
-    "build": "vite build && tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist --jsx preserve"
+    "build": "concurrently 'npm:build:*'",
+    "build:code": "vite build",
+    "build:types": "tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist --jsx preserve"
   },
   "devDependencies": {
+    "concurrently": "^6.2.0",
     "typescript": "^4.3.5",
     "vite": "^2.3.8",
     "vite-plugin-solid": "^2.0.0"

@@ -6,7 +6,7 @@ type Props = {
   zIndex: number;
   backgroundColor?: string;
   opacity?: number;
-  handleClose: () => any;
+  closeModal: () => any;
 };
 
 const ModalBackground: Component<Props> = (props) => {
@@ -18,7 +18,7 @@ const ModalBackground: Component<Props> = (props) => {
     props,
   );
 
-  return <Container {...props} onClick={props.handleClose} />;
+  return <Container {...props} onClick={props.closeModal} />;
 };
 
 export default ModalBackground;

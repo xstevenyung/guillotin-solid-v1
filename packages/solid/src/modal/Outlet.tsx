@@ -26,15 +26,19 @@ const ModalOutlet: Component<Props> = (props) => {
       <div style={`z-index: ${props.zIndex}`}>
         <Dynamic
           component={props.Background}
-          handleClose={closeModal}
+          closeModal={closeModal}
           zIndex={props.zIndex}
         />
-      </div>
 
-      <Content style={`z-index: ${props.zIndex + 1}`}>
-        {/* {...$modal.data} */}
-        <Dynamic component={modal.Component} handleClose={closeModal} />
-      </Content>
+        <Content style={`z-index: ${props.zIndex + 1}`}>
+          {/* {...$modal.data} */}
+          <Dynamic
+            component={modal.Component}
+            closeModal={closeModal}
+            {...modal.data}
+          />
+        </Content>
+      </div>
     </FadeContainer>
   );
 };
