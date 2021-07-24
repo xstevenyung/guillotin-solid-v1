@@ -3,7 +3,7 @@ import { Transition } from 'solid-transition-group';
 import { Show } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
 
-const FadeContainer: Component<{ when: boolean; style?: string }> = (props) => {
+const Fade: Component<{ when: boolean; style?: string }> = (props) => {
   return (
     <Transition name="fade">
       <Show when={props.when}>
@@ -30,4 +30,4 @@ const Container = styled('div')`
   }
 `;
 
-export default FadeContainer;
+export default Fade;

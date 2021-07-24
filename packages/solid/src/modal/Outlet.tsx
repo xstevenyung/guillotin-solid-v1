@@ -1,10 +1,11 @@
 import { Component, onMount } from 'solid-js';
-import { mergeProps, Dynamic } from 'solid-js/web';
-import { styled } from 'solid-styled-components';
+import { mergeProps, Dynamic, Show } from 'solid-js/web';
+import { styled, createGlobalStyles } from 'solid-styled-components';
 import ModalBackground from './Background';
 import { modal, closeModal } from './store';
-import FadeContainer from '../utils/FadeContainer';
+import Fade from '../utils/Fade';
 import type { Props as BackgroundProps } from './Background';
+import { Transition } from 'solid-transition-group';
 
 type Props = {
   zIndex?: number;
@@ -23,22 +24,25 @@ const ModalOutlet: Component<Props> = (props) => {
   });
 
   return (
-    <FadeContainer when={!!modal.Component} style={`z-index: ${props.zIndex}`}>
-      <Dynamic<BackgroundProps>
-        component={props.Background}
-        closeModal={closeModal}
-        zIndex={props.zIndex}
-      />
+    <div style="position: relative;">
+      {props.children}
 
-      <Content style={`z-index: ${props.zIndex + 1}`}>
-        {/* {...$modal.data} */}
-        <Dynamic
-          component={modal.Component}
+      <Fade when={!!modal.Component}>
+        <Dynamic<BackgroundProps>
+          component={props.Background}
           closeModal={closeModal}
-          {...modal.data}
+          zIndex={props.zIndex}
         />
-      </Content>
-    </FadeContainer>
+        {/* {...$modal.data} */}
+        <Content style={`z-index: ${props.zIndex + 1}`}>
+          <Dynamic
+            component={modal.Component}
+            closeModal={closeModal}
+            {...modal.data}
+          />
+        </Content>
+      </Fade>
+    </div>
   );
 };
 
