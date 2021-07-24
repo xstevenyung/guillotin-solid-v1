@@ -4,6 +4,7 @@ import { styled } from 'solid-styled-components';
 import ModalBackground from './Background';
 import { modal, closeModal } from './store';
 import FadeContainer from '../utils/FadeContainer';
+import type { Props as BackgroundProps } from './Background';
 
 type Props = {
   zIndex?: number;
@@ -22,23 +23,21 @@ const ModalOutlet: Component<Props> = (props) => {
   });
 
   return (
-    <FadeContainer when={!!modal.Component}>
-      <div style={`z-index: ${props.zIndex}`}>
-        <Dynamic
-          component={props.Background}
-          closeModal={closeModal}
-          zIndex={props.zIndex}
-        />
+    <FadeContainer when={!!modal.Component} style={`z-index: ${props.zIndex}`}>
+      <Dynamic<BackgroundProps>
+        component={props.Background}
+        closeModal={closeModal}
+        zIndex={props.zIndex}
+      />
 
-        <Content style={`z-index: ${props.zIndex + 1}`}>
-          {/* {...$modal.data} */}
-          <Dynamic
-            component={modal.Component}
-            closeModal={closeModal}
-            {...modal.data}
-          />
-        </Content>
-      </div>
+      <Content style={`z-index: ${props.zIndex + 1}`}>
+        {/* {...$modal.data} */}
+        <Dynamic
+          component={modal.Component}
+          closeModal={closeModal}
+          {...modal.data}
+        />
+      </Content>
     </FadeContainer>
   );
 };

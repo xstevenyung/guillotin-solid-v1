@@ -1,12 +1,13 @@
+import type { Component } from 'solid-js';
 import { Transition } from 'solid-transition-group';
 import { Show } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
 
-const FadeContainer = (props) => {
+const FadeContainer: Component<{ when: boolean; style?: string }> = (props) => {
   return (
     <Transition name="fade">
       <Show when={props.when}>
-        <Container>{props.children}</Container>
+        <Container style={props.style}>{props.children}</Container>
       </Show>
     </Transition>
   );

@@ -2,7 +2,7 @@ import type { Component } from 'solid-js';
 import { mergeProps } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
 
-type Props = {
+export type Props = {
   zIndex: number;
   backgroundColor?: string;
   opacity?: number;

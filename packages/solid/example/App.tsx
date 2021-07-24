@@ -6,7 +6,7 @@ import ExampleNotification from './Notification';
 
 const App: Component = () => {
   return (
-    <>
+    <Main>
       <ModalOutlet />
 
       <ToasterBag x="center" />
@@ -26,7 +26,7 @@ const App: Component = () => {
       >
         open toast
       </button>
-    </>
+    </Main>
   );
 };
 
@@ -43,4 +43,12 @@ const ExampleModal = () => {
 const ModalContainer: Component = styled('div')`
   padding: 1rem;
   background-color: white;
+`;
+
+const Main = styled('main')`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vh;
 `;
