@@ -33,7 +33,7 @@ const ModalOutlet: Component<Props> = (props) => {
           closeModal={closeModal}
           zIndex={props.zIndex}
         />
-        {/* {...$modal.data} */}
+
         <Content style={`z-index: ${props.zIndex + 1}`}>
           <Dynamic
             component={modal.Component}
