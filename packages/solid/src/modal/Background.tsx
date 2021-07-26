@@ -23,7 +23,11 @@ const ModalBackground: Component<Props> = (props) => {
 
 export default ModalBackground;
 
-const Container = styled('div')`
+interface ContainerProps extends Omit<Props, 'closeModal'> {
+  onClick: () => void;
+}
+
+const Container: Component<ContainerProps> = styled('div')`
   position: fixed;
   top: 0;
   right: 0;

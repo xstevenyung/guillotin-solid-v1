@@ -2,20 +2,16 @@ import { DEFAULT_DURATION, TICK } from './constants';
 import {
   Component,
   createSignal,
-  JSXElement,
+  JSX,
   onCleanup,
   createEffect,
 } from 'solid-js';
-import type { Accessor } from 'solid-js';
-
-type Context = {
-  percentage: Accessor<number>;
-};
+import type { Context } from './types';
 
 export type Props = {
   dismiss: () => any;
   duration?: number;
-  children: (context: Context) => JSXElement;
+  children: (context: Context) => JSX.Element;
 };
 
 const ToastWrapper: Component<Props> = (props) => {

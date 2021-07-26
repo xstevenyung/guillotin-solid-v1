@@ -6,27 +6,27 @@ import ExampleNotification from './Notification';
 
 const App: Component = () => {
   return (
-    <Main>
-      <ModalOutlet />
+    <ModalOutlet>
+      <Main>
+        <button
+          type="button"
+          onClick={() => setModal({ Component: ExampleModal, data: {} })}
+        >
+          open modal
+        </button>
+
+        <button
+          type="button"
+          onClick={() =>
+            addNotification(ExampleNotification, { message: 'Test test' })
+          }
+        >
+          open toast
+        </button>
+      </Main>
 
       <ToasterBag x="center" />
-
-      <button
-        type="button"
-        onClick={() => setModal({ Component: ExampleModal, data: {} })}
-      >
-        open modal
-      </button>
-
-      <button
-        type="button"
-        onClick={() =>
-          addNotification(ExampleNotification, { message: 'Test test' })
-        }
-      >
-        open toast
-      </button>
-    </Main>
+    </ModalOutlet>
   );
 };
 

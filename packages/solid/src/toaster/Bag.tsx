@@ -4,10 +4,7 @@ import { styled } from 'solid-styled-components';
 import { dismissNotification, notifications } from './store';
 import ToastWrapper from './ToastWrapper';
 import { TransitionGroup } from 'solid-transition-group';
-
-type XPosition = 'right' | 'left' | 'center';
-
-type YPosition = 'top' | 'bottom';
+import type { Context, XPosition, YPosition } from './types';
 
 type Props = {
   x?: XPosition;
@@ -24,8 +21,9 @@ const ToasterBag: Component<Props> = (props) => {
           {(notification) => (
             <WrapperContainer>
               <ToastWrapper dismiss={() => dismissNotification(notification)}>
+                {/* @ts-ignore */}
                 {(context) => (
-                  <Dynamic
+                  <Dynamic<{ context: Context }>
                     component={notification.Component}
                     context={context}
                     {...notification.data}
@@ -42,7 +40,7 @@ const ToasterBag: Component<Props> = (props) => {
 
 export default ToasterBag;
 
-const Container = styled('div')`
+const Container: Component<Props> = styled('div')`
   padding: 1rem;
   position: fixed;
   z-index: 99999;
