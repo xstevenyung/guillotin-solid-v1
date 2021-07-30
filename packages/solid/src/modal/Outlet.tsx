@@ -2,9 +2,9 @@ import { Component, onMount } from 'solid-js';
 import { mergeProps, Dynamic } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
 import ModalBackground, { ModalBackgroundComponent } from './Background';
-import { modal, closeModal } from './store';
 import Fade from '../utils/Fade';
 import type { Props as BackgroundProps } from './Background';
+import { ModalContextProvider, useModal } from './Context';
 
 type Props = {
   zIndex?: number;
@@ -14,34 +14,42 @@ type Props = {
 const ModalOutlet: Component<Props> = (props) => {
   props = mergeProps({ zIndex: 99999, Background: ModalBackground }, props);
 
-  onMount(() => {
-    window.addEventListener('keydown', (e) => {
-      if (!!modal.Component && e.code === 'Escape') {
-        closeModal();
-      }
-    });
-  });
-
   return (
-    <div style="position: relative;">
-      {props.children}
+    <ModalContextProvider>
+      <div style="position: relative;">
+        {props.children}
 
-      <Fade when={!!modal.Component}>
-        <Dynamic<BackgroundProps>
-          component={props.Background}
-          closeModal={closeModal}
-          zIndex={props.zIndex}
-        />
+        {() => {
+          const { modal, closeModal } = useModal();
 
-        <Content style={`z-index: ${props.zIndex + 1}`}>
-          <Dynamic
-            component={modal.Component}
-            closeModal={closeModal}
-            {...modal.data}
-          />
-        </Content>
-      </Fade>
-    </div>
+          onMount(() => {
+            window.addEventListener('keydown', (e) => {
+              if (!!modal.Component && e.code === 'Escape') {
+                closeModal();
+              }
+            });
+          });
+
+          return (
+            <Fade when={!!modal.Component}>
+              <Dynamic<BackgroundProps>
+                component={props.Background}
+                closeModal={closeModal}
+                zIndex={props.zIndex}
+              />
+
+              <Content style={`z-index: ${props.zIndex + 1}`}>
+                <Dynamic<{ closeModal: () => void; [k: string]: any }>
+                  component={modal.Component}
+                  closeModal={closeModal}
+                  {...modal.data}
+                />
+              </Content>
+            </Fade>
+          );
+        }}
+      </div>
+    </ModalContextProvider>
   );
 };
 

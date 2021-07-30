@@ -1,31 +1,36 @@
 import type { Component } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { ModalOutlet, setModal } from '../src/modal';
+import { ModalOutlet, useModal } from '../src/modal';
 import { ToasterBag, addNotification } from '../src/toaster';
 import ExampleNotification from './Notification';
 
 const App: Component = () => {
   return (
     <ModalOutlet>
-      <Main>
-        <button
-          type="button"
-          onClick={() => setModal({ Component: ExampleModal, data: {} })}
-        >
-          open modal
-        </button>
-
-        <button
-          type="button"
-          onClick={() =>
-            addNotification(ExampleNotification, { message: 'Test test' })
-          }
-        >
-          open toast
-        </button>
-      </Main>
-
       <ToasterBag x="center" />
+
+      {() => {
+        const { setModal } = useModal();
+        return (
+          <Main>
+            <button
+              type="button"
+              onClick={() => setModal({ Component: ExampleModal, data: {} })}
+            >
+              open modal
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                addNotification(ExampleNotification, { message: 'Test test' })
+              }
+            >
+              open toast
+            </button>
+          </Main>
+        );
+      }}
     </ModalOutlet>
   );
 };
