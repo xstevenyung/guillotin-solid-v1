@@ -6,9 +6,10 @@ import { styled } from 'solid-styled-components';
 const Fade: Component<{ when: boolean; style?: string }> = (props) => {
   return (
     <Transition name="fade">
-      <Show when={props.when}>
-        <Container style={props.style}>{props.children}</Container>
-      </Show>
+      <Show
+        when={props.when}
+        children={<Container style={props.style}>{props.children}</Container>}
+      ></Show>
     </Transition>
   );
 };

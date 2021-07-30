@@ -9,7 +9,7 @@ import {
 import type { Context } from './types';
 
 export type Props = {
-  dismiss: () => any;
+  dismiss: () => void;
   duration?: number;
   children: (context: Context) => JSX.Element;
 };

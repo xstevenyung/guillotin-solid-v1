@@ -1,7 +1,9 @@
-import { Component, mergeProps } from 'solid-js';
+import type { Component, JSXElement } from 'solid-js';
+import { mergeProps } from 'solid-js';
 import { For, Dynamic } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
 import { dismissNotification, notifications } from './store';
+import type { Notification } from './store';
 import ToastWrapper from './ToastWrapper';
 import { TransitionGroup } from 'solid-transition-group';
 import type { Context, XPosition, YPosition } from './types';
@@ -17,22 +19,26 @@ const ToasterBag: Component<Props> = (props) => {
   return (
     <Container x={props.x} y={props.y}>
       <TransitionGroup name="scale">
-        <For each={notifications()}>
-          {(notification) => (
+        <For
+          each={notifications()}
+          children={(notification) => (
             <WrapperContainer>
-              <ToastWrapper dismiss={() => dismissNotification(notification)}>
-                {/* @ts-ignore */}
-                {(context) => (
+              <ToastWrapper
+                dismiss={() => {
+                  dismissNotification(notification);
+                }}
+                // @ts-ignore
+                children={(context) => (
                   <Dynamic<{ context: Context }>
                     component={notification.Component}
                     context={context}
                     {...notification.data}
                   />
                 )}
-              </ToastWrapper>
+              />
             </WrapperContainer>
           )}
-        </For>
+        ></For>
       </TransitionGroup>
     </Container>
   );
