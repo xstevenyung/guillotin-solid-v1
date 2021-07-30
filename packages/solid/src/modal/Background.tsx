@@ -4,7 +4,7 @@ import { styled } from 'solid-styled-components';
 
 export type Props = {
   zIndex: number;
-  closeModal: () => any;
+  closeModal?: () => any;
   opacity?: number;
   backgroundColor?: string;
 };
@@ -20,7 +20,12 @@ const ModalBackground: ModalBackgroundComponent = (props) => {
     props,
   );
 
-  return <Container {...props} onClick={props.closeModal} />;
+  return (
+    <Container
+      {...props}
+      onClick={() => props?.closeModal && props.closeModal()}
+    />
+  );
 };
 
 export default ModalBackground;
