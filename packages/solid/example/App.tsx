@@ -28,6 +28,24 @@ const App: Component = () => {
             >
               open toast
             </button>
+
+            <div style="width: 200px; height: 200px; background: red;">
+              <ModalOutlet>
+                {() => {
+                  const { setModal } = useModal();
+                  return (
+                    <button
+                      onClick={() =>
+                        setModal({ Component: () => <div>Hello</div> })
+                      }
+                      type="button"
+                    >
+                      Open Nested Modal
+                    </button>
+                  );
+                }}
+              </ModalOutlet>
+            </div>
           </Main>
         );
       }}
