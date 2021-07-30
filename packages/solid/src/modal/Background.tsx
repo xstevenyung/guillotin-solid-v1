@@ -4,12 +4,14 @@ import { styled } from 'solid-styled-components';
 
 export type Props = {
   zIndex: number;
-  backgroundColor?: string;
-  opacity?: number;
   closeModal: () => any;
+  opacity?: number;
+  backgroundColor?: string;
 };
 
-const ModalBackground: Component<Props> = (props) => {
+export type ModalBackgroundComponent = Component<Props>;
+
+const ModalBackground: ModalBackgroundComponent = (props) => {
   props = mergeProps(
     {
       backgroundColor: 'rgba(229, 231, 235)',

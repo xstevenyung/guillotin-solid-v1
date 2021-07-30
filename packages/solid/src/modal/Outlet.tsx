@@ -1,14 +1,14 @@
 import { Component, onMount } from 'solid-js';
 import { mergeProps, Dynamic } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
-import ModalBackground from './Background';
+import ModalBackground, { ModalBackgroundComponent } from './Background';
 import { modal, closeModal } from './store';
 import Fade from '../utils/Fade';
 import type { Props as BackgroundProps } from './Background';
 
 type Props = {
   zIndex?: number;
-  Background?: Component;
+  Background?: ModalBackgroundComponent;
 };
 
 const ModalOutlet: Component<Props> = (props) => {
