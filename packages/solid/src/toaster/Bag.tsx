@@ -1,12 +1,11 @@
-import type { Component, JSXElement } from 'solid-js';
+import type { Component } from 'solid-js';
 import { mergeProps } from 'solid-js';
 import { For, Dynamic } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
-import { dismissNotification, notifications } from './store';
-import type { Notification } from './store';
 import ToastWrapper from './ToastWrapper';
 import { TransitionGroup } from 'solid-transition-group';
-import type { Context, XPosition, YPosition } from './types';
+import type { ToastProps, XPosition, YPosition } from './types';
+import { ToasterBagContextProvider, useToasterBag } from './Context';
 
 type Props = {
   x?: XPosition;
@@ -17,38 +16,56 @@ const ToasterBag: Component<Props> = (props) => {
   props = mergeProps({ x: 'right', y: 'bottom' }, props);
 
   return (
-    <Container x={props.x} y={props.y}>
-      <TransitionGroup name="scale">
-        <For
-          each={notifications()}
-          children={(notification) => (
-            <WrapperContainer>
-              <ToastWrapper
-                dismiss={() => {
-                  dismissNotification(notification);
-                }}
-                // @ts-ignore
-                children={(context) => (
-                  <Dynamic<{ context: Context }>
-                    component={notification.Component}
-                    context={context}
-                    {...notification.data}
-                  />
-                )}
-              />
-            </WrapperContainer>
-          )}
-        ></For>
-      </TransitionGroup>
-    </Container>
+    <ToasterBagContextProvider>
+      <div style="position: relative; width: 100%; height: 100%;">
+        {props.children}
+
+        <Container x={props.x} y={props.y}>
+          <TransitionGroup name="scale">
+            <NotificationList />
+          </TransitionGroup>
+        </Container>
+      </div>
+    </ToasterBagContextProvider>
   );
 };
 
 export default ToasterBag;
 
+const NotificationList = () => {
+  const { state, dismissNotification } = useToasterBag();
+
+  return (
+    <For
+      each={state.notifications}
+      children={(notification) => {
+        const dismiss = () => {
+          dismissNotification(notification);
+        };
+        return (
+          <WrapperContainer>
+            <ToastWrapper
+              dismiss={dismiss}
+              // @ts-ignore
+              children={(context) => (
+                <Dynamic<ToastProps>
+                  component={notification.Component}
+                  dismiss={dismiss}
+                  context={context}
+                  {...notification.data}
+                />
+              )}
+            />
+          </WrapperContainer>
+        );
+      }}
+    ></For>
+  );
+};
+
 const Container: Component<Props> = styled('div')`
   padding: 1rem;
-  position: fixed;
+  position: absolute;
   z-index: 99999;
   ${(props) =>
     props.x === 'center'

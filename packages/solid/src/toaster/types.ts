@@ -1,4 +1,4 @@
-import type { Accessor } from 'solid-js';
+import type { Accessor, Component } from 'solid-js';
 
 export type XPosition = 'right' | 'left' | 'center';
 
@@ -8,6 +8,9 @@ export type Context = {
   percentage: Accessor<number>;
 };
 
+export type ToastComponent = Component<ToastProps>;
+
 export type ToastProps = {
   context: Context;
+  dismiss: () => void;
 };

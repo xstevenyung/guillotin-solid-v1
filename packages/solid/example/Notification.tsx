@@ -1,6 +1,7 @@
+import { ToastComponent } from '../src';
 import styles from './Notification.module.css';
 
-const ExampleNotification = props => {
+const ExampleNotification: ToastComponent = (props) => {
   return (
     <div class={styles.container}>
       <button type="button" class={styles.close} onClick={props.dismiss}>

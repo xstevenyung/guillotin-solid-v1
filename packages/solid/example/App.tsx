@@ -1,58 +1,80 @@
 import type { Component } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { ModalBackground, ModalOutlet, useModal } from '../src/modal';
-import { ToasterBag, addNotification } from '../src/toaster';
+import { ToasterBag, useToasterBag } from '../src/toaster';
 import ExampleNotification from './Notification';
 
 const App: Component = () => {
   return (
     <ModalOutlet>
-      <ToasterBag x="center" />
+      <ToasterBag x="center">
+        {() => {
+          const { setModal } = useModal();
+          const { addNotification } = useToasterBag();
 
-      {() => {
-        const { setModal } = useModal();
-        return (
-          <Main>
-            <button
-              type="button"
-              onClick={() => setModal({ Component: ExampleModal, data: {} })}
-            >
-              open modal
-            </button>
-
-            <button
-              type="button"
-              onClick={() =>
-                addNotification(ExampleNotification, { message: 'Test test' })
-              }
-            >
-              open toast
-            </button>
-
-            <div style="width: 200px; height: 200px; background: red;">
-              <ModalOutlet
-                Background={(props) => (
-                  <ModalBackground zIndex={props.zIndex} />
-                )}
+          return (
+            <Main>
+              <button
+                type="button"
+                onClick={() => setModal({ Component: ExampleModal, data: {} })}
               >
-                {() => {
-                  const { setModal } = useModal();
-                  return (
-                    <button
-                      onClick={() =>
-                        setModal({ Component: () => <div>Hello</div> })
-                      }
-                      type="button"
-                    >
-                      Open Nested Modal
-                    </button>
-                  );
-                }}
-              </ModalOutlet>
-            </div>
-          </Main>
-        );
-      }}
+                open modal
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  addNotification(ExampleNotification, { message: 'Test test' })
+                }
+              >
+                open toast
+              </button>
+
+              <div style="width: 200px; height: 200px; background: red;">
+                <ModalOutlet
+                  Background={(props) => (
+                    <ModalBackground zIndex={props.zIndex} />
+                  )}
+                >
+                  {() => {
+                    const { setModal } = useModal();
+                    return (
+                      <button
+                        onClick={() =>
+                          setModal({ Component: () => <div>Hello</div> })
+                        }
+                        type="button"
+                      >
+                        Open Nested Modal
+                      </button>
+                    );
+                  }}
+                </ModalOutlet>
+              </div>
+
+              <div style="width: 600px; height: 600px; background: gray;">
+                <ToasterBag x="center">
+                  {() => {
+                    const { addNotification } = useToasterBag();
+                    return (
+                      <button
+                        onClick={() =>
+                          addNotification(ExampleNotification, {
+                            message: "I'm nested",
+                          })
+                        }
+                        type="button"
+                      >
+                        Open Nested Toast
+                      </button>
+                    );
+                  }}
+                </ToasterBag>
+              </div>
+            </Main>
+          );
+        }}
+      </ToasterBag>
     </ModalOutlet>
   );
 };
