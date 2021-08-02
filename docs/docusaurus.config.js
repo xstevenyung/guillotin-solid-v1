@@ -77,7 +77,7 @@ module.exports = {
       //     ],
       //   },
       // ],
-      copyright: `Copyright © ${new Date().getFullYear()} Guillotin made with coffee and sweat.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Guillotin made under influence of tea.`,
     },
     prism: {
       theme: lightCodeTheme,
@@ -90,9 +90,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+          editUrl: 'https://github.com/recodable/guillotin/tree/main/docs',
         },
         // blog: {
         //   showReadingTime: true,
