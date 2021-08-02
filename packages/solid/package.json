@@ -18,6 +18,7 @@
   "scripts": {
     "start": "vite",
     "dev": "vite",
+    "prepublishOnly": "pnpm build",
     "build": "concurrently 'npm:build:*'",
     "build:code": "vite build",
     "build:types": "tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist --jsx preserve"
