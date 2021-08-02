@@ -11,7 +11,7 @@ type Props = {
   Background?: ModalBackgroundComponent;
 };
 
-const ModalOutlet: Component<Props> = (props) => {
+const ModalProvider: Component<Props> = (props) => {
   props = mergeProps({ zIndex: 99999, Background: ModalBackground }, props);
 
   return (
@@ -53,7 +53,7 @@ const ModalOutlet: Component<Props> = (props) => {
   );
 };
 
-export default ModalOutlet;
+export default ModalProvider;
 
 const Content = styled('div')`
   position: absolute;
