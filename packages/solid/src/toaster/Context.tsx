@@ -44,9 +44,8 @@ export const ToasterBagContextProvider: Component = (props) => {
   return (
     <ToasterBagContext.Provider
       value={{ state, addNotification, dismissNotification }}
-    >
-      {props.children}
-    </ToasterBagContext.Provider>
+      children={props.children}
+    />
   );
 };
 

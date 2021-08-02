@@ -21,9 +21,10 @@ export const ModalContextProvider: Component = (props) => {
   const closeModal = () => setModal({ ...closedState });
 
   return (
-    <ModalContext.Provider value={{ modal, setModal, closeModal }}>
-      {props.children}
-    </ModalContext.Provider>
+    <ModalContext.Provider
+      value={{ modal, setModal, closeModal }}
+      children={props.children}
+    />
   );
 };
 
