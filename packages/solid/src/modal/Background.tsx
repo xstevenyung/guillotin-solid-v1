@@ -1,10 +1,9 @@
 import type { Component } from 'solid-js';
 import { mergeProps } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
+import { useModal } from './Context';
 
 export type Props = {
-  zIndex: number;
-  closeModal?: () => any;
   opacity?: number;
   backgroundColor?: string;
 };
@@ -12,6 +11,8 @@ export type Props = {
 export type ModalBackgroundComponent = Component<Props>;
 
 const ModalBackground: ModalBackgroundComponent = (props) => {
+  const { closeModal, zIndex } = useModal();
+
   props = mergeProps(
     {
       backgroundColor: 'rgba(229, 231, 235)',
@@ -20,18 +21,14 @@ const ModalBackground: ModalBackgroundComponent = (props) => {
     props,
   );
 
-  return (
-    <Container
-      {...props}
-      onClick={() => props?.closeModal && props.closeModal()}
-    />
-  );
+  return <Container {...props} zIndex={zIndex} onClick={closeModal} />;
 };
 
 export default ModalBackground;
 
-interface ContainerProps extends Omit<Props, 'closeModal'> {
+interface ContainerProps extends Props {
   onClick: () => void;
+  zIndex: number;
 }
 
 const Container: Component<ContainerProps> = styled('div')`

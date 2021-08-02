@@ -15,7 +15,7 @@ const ModalProvider: Component<Props> = (props) => {
   props = mergeProps({ zIndex: 99999, Background: ModalBackground }, props);
 
   return (
-    <ModalContextProvider>
+    <ModalContextProvider zIndex={props.zIndex}>
       <div style="position: relative; width: 100%; height: 100%;">
         {props.children}
 
@@ -32,11 +32,7 @@ const ModalProvider: Component<Props> = (props) => {
 
           return (
             <Fade when={!!modal.Component}>
-              <Dynamic<BackgroundProps>
-                component={props.Background}
-                closeModal={closeModal}
-                zIndex={props.zIndex}
-              />
+              <Dynamic<BackgroundProps> component={props.Background} />
 
               <Content style={`z-index: ${props.zIndex + 1}`}>
                 <Dynamic<{ closeModal: () => void; [k: string]: any }>

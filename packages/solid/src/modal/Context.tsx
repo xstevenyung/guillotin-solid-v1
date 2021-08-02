@@ -13,16 +13,17 @@ const ModalContext = createContext<{
   modal: ModalStore;
   setModal: SetStoreFunction<ModalStore>;
   closeModal: () => void;
+  zIndex: number;
 }>();
 
-export const ModalContextProvider: Component = (props) => {
+export const ModalContextProvider: Component<{ zIndex: number }> = (props) => {
   const [modal, setModal] = createStore<ModalStore>({ ...closedState });
 
   const closeModal = () => setModal({ ...closedState });
 
   return (
     <ModalContext.Provider
-      value={{ modal, setModal, closeModal }}
+      value={{ modal, setModal, closeModal, zIndex: props.zIndex }}
       children={props.children}
     />
   );

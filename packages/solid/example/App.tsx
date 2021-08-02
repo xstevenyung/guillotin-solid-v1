@@ -1,12 +1,12 @@
 import type { Component } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { ModalBackground, ModalOutlet, useModal } from '../src/modal';
+import { ModalBackground, ModalProvider, useModal } from '../src/modal';
 import { ToasterBag, useToasterBag } from '../src/toaster';
 import ExampleNotification from './Notification';
 
 const App: Component = () => {
   return (
-    <ModalOutlet>
+    <ModalProvider>
       <ToasterBag x="center">
         {() => {
           const { setModal } = useModal();
@@ -31,10 +31,8 @@ const App: Component = () => {
               </button>
 
               <div style="width: 200px; height: 200px; background: red;">
-                <ModalOutlet
-                  Background={(props) => (
-                    <ModalBackground zIndex={props.zIndex} />
-                  )}
+                <ModalProvider
+                  Background={() => <ModalBackground backgroundColor="green" />}
                 >
                   {() => {
                     const { setModal } = useModal();
@@ -49,7 +47,7 @@ const App: Component = () => {
                       </button>
                     );
                   }}
-                </ModalOutlet>
+                </ModalProvider>
               </div>
 
               <div style="width: 600px; height: 600px; background: gray;">
@@ -75,7 +73,7 @@ const App: Component = () => {
           );
         }}
       </ToasterBag>
-    </ModalOutlet>
+    </ModalProvider>
   );
 };
 
