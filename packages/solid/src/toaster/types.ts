@@ -1,14 +1,5 @@
 import type { Accessor, Component } from 'solid-js';
 
-export type XPosition = 'right' | 'left' | 'center';
-
-export type YPosition = 'top' | 'bottom';
-
-export type Position = {
-  x: XPosition;
-  y: YPosition;
-};
-
 export type Context = {
   percentage: Accessor<number>;
 };
@@ -25,3 +16,5 @@ export type Toast = {
   Component: Component;
   data: object;
 };
+
+export * from '../types';

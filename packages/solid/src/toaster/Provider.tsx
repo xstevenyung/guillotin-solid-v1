@@ -58,26 +58,29 @@ const resolveKey = ({ x, y }: Position) => {
   return [x, y].join('-');
 };
 
-const ToasterProvider: Component<{ positions?: Position[] }> = (props) => {
-  props = mergeProps({ positions: availablePositions }, props);
+const ToasterProvider: Component<{ positions?: Position[]; nested?: boolean }> =
+  (props) => {
+    props = mergeProps({ positions: availablePositions, nested: false }, props);
 
-  const bags = props.positions.reduce((acc, position) => {
-    return { ...acc, [resolveKey(position)]: createToasterBagStore() };
-  }, {});
+    const bags = props.positions.reduce((acc, position) => {
+      return { ...acc, [resolveKey(position)]: createToasterBagStore() };
+    }, {});
 
-  return (
-    <ToasterContext.Provider value={bags}>
-      {props.children}
+    return (
+      <ToasterContext.Provider value={bags}>
+        {props.children}
 
-      <div style="position: relative; width: 100%; height: 100%;">
-        <For
-          each={props.positions}
-          children={(position) => <ToasterBag {...position} />}
-        />
-      </div>
-    </ToasterContext.Provider>
-  );
-};
+        <div style="position: relative; width: 100%; height: 100%;">
+          <For
+            each={props.positions}
+            children={(position) => (
+              <ToasterBag {...position} nested={props.nested} />
+            )}
+          />
+        </div>
+      </ToasterContext.Provider>
+    );
+  };
 
 export default ToasterProvider;
 

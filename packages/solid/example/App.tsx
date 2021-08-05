@@ -10,7 +10,7 @@ const App: Component = () => {
       <ToasterProvider>
         {() => {
           const { setModal } = useModal();
-          const { addToast } = useToaster({ x: 'left', y: 'bottom' });
+          const { addToast } = useToaster({ x: 'left', y: 'top' });
 
           return (
             <Main>
@@ -51,7 +51,7 @@ const App: Component = () => {
               </div>
 
               <div style="width: 600px; height: 600px; background: gray;">
-                <ToasterProvider positions={[{ x: 'center', y: 'top' }]}>
+                <ToasterProvider nested positions={[{ x: 'center', y: 'top' }]}>
                   {() => {
                     const { addToast } = useToaster({ x: 'center', y: 'top' });
 
@@ -97,6 +97,6 @@ const Main = styled('main')`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 150vh;
   min-width: 100vh;
 `;

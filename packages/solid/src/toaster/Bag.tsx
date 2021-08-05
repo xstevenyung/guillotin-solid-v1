@@ -6,18 +6,21 @@ import ToastWrapper from './ToastWrapper';
 import { TransitionGroup } from 'solid-transition-group';
 import type { ToastProps, Position } from './types';
 import { useToaster } from './Provider';
+import Nestable, { Props as NestableProps } from '../utils/Nestable';
 
-type Props = Partial<Position>;
+interface Props extends Partial<Position> {
+  nested?: boolean;
+}
 
 const ToasterBag: Component<Props> = (props) => {
-  props = mergeProps({ x: 'right', y: 'bottom' }, props);
+  props = mergeProps({ x: 'right', y: 'bottom', nested: false }, props);
 
   return (
-    <Container {...props}>
+    <Nestable nested={props.nested} x={props.x} y={props.y}>
       <TransitionGroup name="scale">
         <ToastList position={{ x: props.x, y: props.y }} />
       </TransitionGroup>
-    </Container>
+    </Nestable>
   );
 };
 
@@ -51,7 +54,7 @@ const ToastList: Component<{ position: Position }> = (props) => {
           </WrapperContainer>
         );
       }}
-    ></For>
+    />
   );
 };
 
