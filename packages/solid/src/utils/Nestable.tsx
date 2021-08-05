@@ -7,25 +7,13 @@ export interface Props extends Position {
   nested: boolean;
 }
 
-const Nestable: Component<Props> = (props) => {
-  return (
-    <Switch>
-      <Match when={props.nested}>
-        <div style="position: relative; width: 100%; height: 100%;">
-          <Container {...props} />
-        </div>
-      </Match>
+export const Nest = styled('div')`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
 
-      <Match when={true}>
-        <Container {...props} />
-      </Match>
-    </Switch>
-  );
-};
-
-export default Nestable;
-
-const Container: Component<Props> = styled('div')`
+export const Container: Component<Props> = styled('div')`
   position: ${(props) => (props.nested ? 'absolute' : 'fixed')};
   z-index: 99999;
   ${(props) =>
@@ -37,3 +25,21 @@ const Container: Component<Props> = styled('div')`
       ? 'top: 50%; transform: translateX(-50%);'
       : `${props.y}: 0;`}
 `;
+
+const Nestable: Component<Props> = (props) => {
+  return (
+    <Switch>
+      <Match when={props.nested}>
+        <Nest>
+          <Container {...props} />
+        </Nest>
+      </Match>
+
+      <Match when={true}>
+        <Container {...props} />
+      </Match>
+    </Switch>
+  );
+};
+
+export default Nestable;

@@ -6,7 +6,7 @@ import ToastWrapper from './ToastWrapper';
 import { TransitionGroup } from 'solid-transition-group';
 import type { ToastProps, Position } from './types';
 import { useToaster } from './Provider';
-import Nestable, { Props as NestableProps } from '../utils/Nestable';
+import Nestable from '../utils/Nestable';
 
 interface Props extends Partial<Position> {
   nested?: boolean;
