@@ -1,3 +1,4 @@
 export { default as ToasterBag } from './Bag';
-export * from './Context';
+export { default as ToasterProvider } from './Provider';
+export * from './Provider';
 export * from './types';

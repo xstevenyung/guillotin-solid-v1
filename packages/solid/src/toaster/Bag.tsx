@@ -4,36 +4,27 @@ import { For, Dynamic } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
 import ToastWrapper from './ToastWrapper';
 import { TransitionGroup } from 'solid-transition-group';
-import type { ToastProps, XPosition, YPosition } from './types';
-import { ToasterBagContextProvider, useToasterBag } from './Context';
+import type { ToastProps, Position } from './types';
+import { useToaster } from './Provider';
 
-type Props = {
-  x?: XPosition;
-  y?: YPosition;
-};
+type Props = Partial<Position>;
 
 const ToasterBag: Component<Props> = (props) => {
   props = mergeProps({ x: 'right', y: 'bottom' }, props);
 
   return (
-    <ToasterBagContextProvider>
-      <div style="position: relative; width: 100%; height: 100%;">
-        {props.children}
-
-        <Container x={props.x} y={props.y}>
-          <TransitionGroup name="scale">
-            <NotificationList />
-          </TransitionGroup>
-        </Container>
-      </div>
-    </ToasterBagContextProvider>
+    <Container {...props}>
+      <TransitionGroup name="scale">
+        <ToastList position={{ x: props.x, y: props.y }} />
+      </TransitionGroup>
+    </Container>
   );
 };
 
 export default ToasterBag;
 
-const NotificationList = () => {
-  const { state, dismissToast } = useToasterBag();
+const ToastList: Component<{ position: Position }> = (props) => {
+  const { state, dismissToast } = useToaster(props.position);
 
   return (
     <For
