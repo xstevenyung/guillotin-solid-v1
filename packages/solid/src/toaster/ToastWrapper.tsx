@@ -47,8 +47,8 @@ const ToastWrapper: Component<Props> = (props) => {
 
   return (
     <div
-      onMouseEnter={() => setTimerRunning(false)}
-      onmouseleave={() => setTimerRunning(true)}
+      onMouseOver={() => setTimerRunning(false)}
+      onMouseOut={() => setTimerRunning(true)}
     >
       {props.children({ percentage })}
     </div>
