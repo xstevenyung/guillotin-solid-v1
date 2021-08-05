@@ -5,18 +5,23 @@ import ModalBackground, { ModalBackgroundComponent } from './Background';
 import Fade from '../utils/Fade';
 import type { Props as BackgroundProps } from './Background';
 import { ModalContextProvider, useModal } from './Context';
+import { Nest, Container } from '../utils/Nestable';
 
 type Props = {
   zIndex?: number;
   Background?: ModalBackgroundComponent;
+  nested?: boolean;
 };
 
 const ModalProvider: Component<Props> = (props) => {
-  props = mergeProps({ zIndex: 99999, Background: ModalBackground }, props);
+  props = mergeProps(
+    { zIndex: 99999, Background: ModalBackground, nested: false },
+    props,
+  );
 
   return (
     <ModalContextProvider zIndex={props.zIndex}>
-      <div style="position: relative; width: 100%; height: 100%;">
+      <Nest>
         {props.children}
 
         {() => {
@@ -34,17 +39,22 @@ const ModalProvider: Component<Props> = (props) => {
             <Fade when={!!modal.Component}>
               <Dynamic<BackgroundProps> component={props.Background} />
 
-              <Content style={`z-index: ${props.zIndex + 1}`}>
+              <Container
+                style={`z-index: ${props.zIndex + 1}`}
+                x="center"
+                y="center"
+                nested={props.nested}
+              >
                 <Dynamic<{ closeModal: () => void; [k: string]: any }>
                   component={modal.Component}
                   closeModal={closeModal}
                   {...modal.data}
                 />
-              </Content>
+              </Container>
             </Fade>
           );
         }}
-      </div>
+      </Nest>
     </ModalContextProvider>
   );
 };

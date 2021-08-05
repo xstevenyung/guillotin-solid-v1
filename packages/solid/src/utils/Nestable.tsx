@@ -1,9 +1,9 @@
-import type { Component } from 'solid-js';
+import type { Component, JSX } from 'solid-js';
 import { Switch, Match } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
 import type { Position } from '../types';
 
-export interface Props extends Position {
+export interface Props extends Position, JSX.HTMLAttributes<any> {
   nested: boolean;
 }
 

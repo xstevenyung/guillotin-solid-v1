@@ -33,6 +33,7 @@ const App: Component = () => {
               <div style="width: 200px; height: 200px; background: red;">
                 <ModalProvider
                   Background={() => <ModalBackground backgroundColor="green" />}
+                  nested
                 >
                   {() => {
                     const { setModal } = useModal();
