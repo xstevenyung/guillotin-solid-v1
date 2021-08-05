@@ -1,49 +1,52 @@
 import type { Component } from 'solid-js';
 import { createContext, useContext } from 'solid-js';
 import { createStore } from 'solid-js/store';
+import type { ToastComponent } from './types';
 
 let id = 1;
 
-export type Notification = {
+export type Toast = {
   id: number;
   Component: Component;
   data: object;
 };
 
 type State = {
-  notifications: Notification[];
+  toasts: Toast[];
 };
+
+type AddFunction = (Component: ToastComponent, data?: object) => Toast;
+
+type DismissFunction = (toast: Toast) => void;
 
 const ToasterBagContext = createContext<{
   state: State;
-  addNotification: (Component, data?: object) => Notification;
-  dismissNotification: (notification: Notification) => void;
+  addToast: AddFunction;
+  dismissToast: DismissFunction;
 }>();
 
 export const ToasterBagContextProvider: Component = (props) => {
   const [state, setState] = createStore<State>({
-    notifications: [],
+    toasts: [],
   });
 
-  const addNotification = (Component: Component, data = {}) => {
-    const newNotification: Notification = { id: id++, Component, data };
+  const addToast: AddFunction = (Component, data = {}) => {
+    const newToast: Toast = { id: id++, Component, data };
 
-    setState({ notifications: [...state.notifications, newNotification] });
+    setState({ toasts: [...state.toasts, newToast] });
 
-    return newNotification;
+    return newToast;
   };
 
-  const dismissNotification = ({ id }: Notification) => {
+  const dismissToast: DismissFunction = ({ id }) => {
     return setState({
-      notifications: state.notifications.filter(
-        (notification) => notification.id !== id,
-      ),
+      toasts: state.toasts.filter((toast) => toast.id !== id),
     });
   };
 
   return (
     <ToasterBagContext.Provider
-      value={{ state, addNotification, dismissNotification }}
+      value={{ state, addToast, dismissToast }}
       children={props.children}
     />
   );

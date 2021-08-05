@@ -10,7 +10,7 @@ const App: Component = () => {
       <ToasterBag x="center">
         {() => {
           const { setModal } = useModal();
-          const { addNotification } = useToasterBag();
+          const { addToast } = useToasterBag();
 
           return (
             <Main>
@@ -24,7 +24,7 @@ const App: Component = () => {
               <button
                 type="button"
                 onClick={() =>
-                  addNotification(ExampleNotification, { message: 'Test test' })
+                  addToast(ExampleNotification, { message: 'Test test' })
                 }
               >
                 open toast
@@ -53,11 +53,11 @@ const App: Component = () => {
               <div style="width: 600px; height: 600px; background: gray;">
                 <ToasterBag x="center">
                   {() => {
-                    const { addNotification } = useToasterBag();
+                    const { addToast } = useToasterBag();
                     return (
                       <button
                         onClick={() =>
-                          addNotification(ExampleNotification, {
+                          addToast(ExampleNotification, {
                             message: "I'm nested",
                           })
                         }

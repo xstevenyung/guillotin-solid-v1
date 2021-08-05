@@ -33,15 +33,16 @@ const ToasterBag: Component<Props> = (props) => {
 export default ToasterBag;
 
 const NotificationList = () => {
-  const { state, dismissNotification } = useToasterBag();
+  const { state, dismissToast } = useToasterBag();
 
   return (
     <For
-      each={state.notifications}
-      children={(notification) => {
+      each={state.toasts}
+      children={(toast) => {
         const dismiss = () => {
-          dismissNotification(notification);
+          dismissToast(toast);
         };
+
         return (
           <WrapperContainer>
             <ToastWrapper
@@ -49,10 +50,10 @@ const NotificationList = () => {
               // @ts-ignore
               children={(context) => (
                 <Dynamic<ToastProps>
-                  component={notification.Component}
+                  component={toast.Component}
                   dismiss={dismiss}
                   context={context}
-                  {...notification.data}
+                  {...toast.data}
                 />
               )}
             />
