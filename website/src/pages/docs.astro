@@ -6,14 +6,18 @@ import NavigableContent from "../components/NavigableContent.jsx"
 
 <BaseLayout title="Guillotin - Collection of Headless Component for Demanding Developers">
 	<header class="py-6 px-10">
-		<a href="/" title="Guillotin's homepage" class="text-center my-10">
-			<span class="text-3xl font-semibold">Guillotin</span>
-			<span class="text-3xl font-bold  my-10 text-green-500 ml-1">Docs</span>
+		<a href="/" title="Guillotin's homepage" class="text-center my-10 text-3xl ">
+			<span class="font-semibold">Guillotin</span>
+			<span class="font-bold my-10 text-green-500 ml-1">Docs</span>
 		</a>
 	</header>
 
 	<NavigableContent client:load>
 		<div class="content p-8 flex-grow-0 prose prose-lg prose-green" style="max-width: 85ch;">
+			<div class="flex gap-4 border-l-4 border-blue-700 bg-blue-100 px-6 text-blue-700 mb-4">
+				<p>Guillotin is only available for <a href="https://www.solidjs.com/" target="_blank">Solid.js</a> at the moment but we plan on expanding on other frameworks very soon. Follow <a href="https://twitter.com/xstevenyung" target="_blank">@xstevenyung</a> on Twitter for future updates.</p>
+			</div>
+
 			<section>
 				<Markdown>
 					# Introduction
@@ -64,7 +68,7 @@ import NavigableContent from "../components/NavigableContent.jsx"
 
 					This example will illustrate how to create your first custom modal.
 
-					```jsx title="src/index.jsx"
+					```jsx
 					import { ModalProvider, useModal } from '@guillotin/solid';
 					import { render } from "solid-js/web";
 
@@ -248,6 +252,16 @@ import NavigableContent from "../components/NavigableContent.jsx"
 			</section>
 		</div>
 	</NavigableContent>
+
+	<footer class="flex flex-col justify-center items-center pb-14 pt-10 text-sm text-gray-500 border-b-8 border-green-400">
+		<p>
+			Made by <a class="text-blue-500 hover:text-green-400 font-bold" href="https://recodable.io/" rel="noopener" target="_blank">Recodable<span class="text-green-300 text-xl">.</span></a>
+		</p>
+
+		<p>
+			Website powered by our love for <a href="https://astro.build/" target="_blank" class="text-green-500 hover:text-green-400 underline font-semibold">Astro</a> & <a href="https://www.solidjs.com/" target="_blank" class="text-green-500 hover:text-green-400 underline font-semibold">Solid.js</a>
+		</p>
+	</footer>
 </BaseLayout>
 
 <style>

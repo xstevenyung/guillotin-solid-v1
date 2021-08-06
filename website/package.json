@@ -8,8 +8,6 @@
   },
   "devDependencies": {
     "@astrojs/renderer-solid": "^0.1.0",
-    "@astrojs/renderer-svelte": "^0.1.1",
-    "@astrojs/renderer-vue": "^0.1.6",
     "@tailwindcss/typography": "^0.4.1",
     "astro": "^0.18.8",
     "tailwindcss": "^2.2.7"
