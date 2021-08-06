@@ -1,0 +1,19 @@
+---
+  const { title } = Astro.props;
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{title}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/global.css" />
+</head>
+
+<body>
+  <main>
+    <slot />
+  </main>
+</body>
+</html>
