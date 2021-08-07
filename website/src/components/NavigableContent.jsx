@@ -62,13 +62,18 @@ const SectionItem = (props) => {
     <li
       onMouseOver={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      class="relative flex justify-baseline items-center gap-2 hover:bg-gray-200 cursor-pointer"
+      class="relative flex justify-baseline items-center gap-2 hover:bg-gray-200 cursor-pointer text-gray-800"
     >
       <a
         href={`#${props.id}`}
         class="inline-block px-6 py-2 w-full text-left text-lg flex-grow-0 truncate"
       >
-        <span style={`padding-left: ${props.level * 2}rem`}>{props.name}</span>
+        <span
+          classList={{ 'font-bold text-xl': props.level === 0 }}
+          style={`padding-left: ${props.level * 2}rem;`}
+        >
+          {props.name}
+        </span>
       </a>
 
       <Show when={hovered() || props.isViewing}>
