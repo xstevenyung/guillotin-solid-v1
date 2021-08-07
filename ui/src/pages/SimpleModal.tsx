@@ -1,4 +1,5 @@
 import { useModal, ModalProvider } from '@guillotin/solid';
+import Container from '../components/Container';
 
 const Modal = () => {
   const { closeModal } = useModal();
@@ -28,7 +29,7 @@ const SimpleModal = () => {
       {() => {
         const { setModal } = useModal();
         return (
-          <div class="w-screen h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-2xl flex justify-center items-center">
+          <Container>
             <button
               class="transition duration-250 ease-in-out bg-blue-600 hover:bg-blue-700 rounded-lg px-6 py-3 text-white font-bold shadow-md hover:shadow-lg transform hover:-translate-y-2"
               onClick={() => setModal({ Component: Modal })}
@@ -36,7 +37,7 @@ const SimpleModal = () => {
             >
               Open example modal
             </button>
-          </div>
+          </Container>
         );
       }}
     </ModalProvider>
