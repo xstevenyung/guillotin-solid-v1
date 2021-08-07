@@ -1,0 +1,25 @@
+{
+  "name": "@guillotin/ui",
+  "version": "0.0.0",
+  "description": "",
+  "hasInstallScript": true,
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.7",
+    "vite": "^2.4.4",
+    "vite-plugin-solid": "^2.0.1"
+  },
+  "dependencies": {
+    "@guillotin/solid": "workspace:^0.0.5",
+    "solid-app-router": "^0.1.4",
+    "solid-js": "^1.0.7"
+  }
+}
