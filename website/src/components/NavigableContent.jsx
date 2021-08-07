@@ -29,7 +29,7 @@ const NavigableContent = (props) => {
   return (
     <div class="grid grid-cols-4">
       <div class="relative">
-        <nav class="sticky top-24 right-0 left-0 overflow-y-scroll">
+        <nav class="max-h-screen sticky top-0 right-0 left-0 overflow-y-scroll">
           <SectionList headlines={headlines()} />
         </nav>
       </div>
@@ -45,7 +45,7 @@ export default NavigableContent;
 
 const SectionList = (props) => {
   return (
-    <ol>
+    <ol class="py-6">
       <For each={props.headlines}>
         {(headline) => <SectionItem {...headline} />}
       </For>
