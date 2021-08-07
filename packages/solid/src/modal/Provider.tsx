@@ -1,6 +1,5 @@
 import { Component, onMount } from 'solid-js';
 import { mergeProps, Dynamic } from 'solid-js/web';
-import { styled } from 'solid-styled-components';
 import ModalBackground, { ModalBackgroundComponent } from './Background';
 import Fade from '../utils/Fade';
 import type { Props as BackgroundProps } from './Background';
@@ -60,10 +59,3 @@ const ModalProvider: Component<Props> = (props) => {
 };
 
 export default ModalProvider;
-
-const Content = styled('div')`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-`;
