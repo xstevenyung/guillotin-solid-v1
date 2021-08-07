@@ -1,7 +1,8 @@
 {
   "scripts": {
     "solid": "pnpm --filter @guillotin/solid",
-    "website": "pnpm --filter @guillotin/website"
+    "website": "pnpm --filter @guillotin/website",
+    "ui": "pnpm --filter @guillotin/ui"
   },
   "prettier": "@recodable/prettier-config",
   "devDependencies": {
