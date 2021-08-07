@@ -71,12 +71,9 @@ const ToasterProvider: Component<{ positions?: Position[]; nested?: boolean }> =
         {props.children}
 
         <div style="position: relative; width: 100%; height: 100%;">
-          <For
-            each={props.positions}
-            children={(position) => (
-              <ToasterBag {...position} nested={props.nested} />
-            )}
-          />
+          <For each={props.positions}>
+            {(position) => <ToasterBag {...position} nested={props.nested} />}
+          </For>
         </div>
       </ToasterContext.Provider>
     );

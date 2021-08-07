@@ -24,8 +24,9 @@ export const ModalContextProvider: Component<{ zIndex: number }> = (props) => {
   return (
     <ModalContext.Provider
       value={{ modal, setModal, closeModal, zIndex: props.zIndex }}
-      children={props.children}
-    />
+    >
+      {props.children}
+    </ModalContext.Provider>
   );
 };
 

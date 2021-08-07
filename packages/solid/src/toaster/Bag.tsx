@@ -30,9 +30,8 @@ const ToastList: Component<{ position: Position }> = (props) => {
   const { state, dismissToast } = useToaster(props.position);
 
   return (
-    <For
-      each={state.toasts}
-      children={(toast) => {
+    <For each={state.toasts}>
+      {(toast) => {
         const dismiss = () => {
           dismissToast(toast);
         };
@@ -54,7 +53,7 @@ const ToastList: Component<{ position: Position }> = (props) => {
           </WrapperContainer>
         );
       }}
-    />
+    </For>
   );
 };
 

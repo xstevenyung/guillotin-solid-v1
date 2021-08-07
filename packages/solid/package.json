@@ -21,7 +21,7 @@
     "prepublishOnly": "pnpm build",
     "build": "concurrently 'npm:build:*'",
     "build:code": "vite build",
-    "build:types": "tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist --jsx preserve"
+    "build:types": "tsc --declaration --emitDeclarationOnly --project tsconfig.json"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
