@@ -1,13 +1,14 @@
 {
   "name": "@guillotin/ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "hasInstallScript": true,
   "scripts": {
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "pnpm build && netlify deploy --prod"
   },
   "license": "MIT",
   "devDependencies": {
