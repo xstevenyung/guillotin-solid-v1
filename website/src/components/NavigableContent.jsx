@@ -47,7 +47,7 @@ const SectionList = (props) => {
   return (
     <ol>
       <For each={props.headlines}>
-        {(headline) => <SectionItem {...headline} isViewing />}
+        {(headline) => <SectionItem {...headline} />}
       </For>
     </ol>
   );
@@ -56,9 +56,13 @@ const SectionList = (props) => {
 const SectionItem = (props) => {
   props = mergeProps({ isViewing: false }, props);
 
+  const [hovered, setHovered] = createSignal(false);
+
   return (
     <li class="relative">
       <a
+        onMouseOver={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         href={`#${props.id}`}
         class="
         inline-block
@@ -73,7 +77,7 @@ const SectionItem = (props) => {
         {props.name}
       </a>
 
-      <Show when={props.isViewing}>
+      <Show when={hovered() || props.isViewing}>
         <span
           class="
         absolute
