@@ -1,7 +1,7 @@
 ---
 import DocsLayout from "../layouts/DocsLayout.astro"
 import { Markdown } from "astro/components"
-import Demo from "../components/Demo.astro"
+import Demo from "../components/Demo.jsx"
 ---
 
 <DocsLayout>
@@ -45,9 +45,11 @@ At the moment, Guillotin only include 2 components, [Toaster](/docs/toaster) and
 # Modal
 
 A fully-managed, renderless dialog component with great default, perfect for building completely custom modal and dialog windows for your next application.
+</Markdown>
 
 <Demo key="simple-modal" />
 
+<Markdown>
 ## Simple Example
 
 This example will illustrate how to create your first custom modal.
@@ -228,7 +230,7 @@ const Content = () => {
 ```
 
 # Toaster
-<!-- <iframe src="https://guillotinui.netlify.app/simple-toast" class="w-full h-80" /> -->
-<Demo key="simple-toast" />
 </Markdown>
+<Demo client:load key="simple-toast" />
+
 </DocsLayout>
