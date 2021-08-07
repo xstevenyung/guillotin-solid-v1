@@ -16,14 +16,12 @@ export const Nest = styled('div')`
 export const Container: Component<Props> = styled('div')`
   position: ${(props) => (props.nested ? 'absolute' : 'fixed')};
   z-index: 99999;
+  ${(props) => (props.x === 'center' ? 'left: 50%;' : `${props.x}: 0;`)}
+  ${(props) => (props.y === 'center' ? 'top: 50%;' : `${props.y}: 0;`)}
   ${(props) =>
-    props.x === 'center'
-      ? 'left: 50%; transform: translateX(-50%);'
-      : `${props.x}: 0;`}
-  ${(props) =>
-    props.y === 'center'
-      ? 'top: 50%; transform: translateX(-50%);'
-      : `${props.y}: 0;`}
+    `transform: translate(${props.x === 'center' ? '-50%' : '0'}, ${
+      props.y === 'center' ? '-50%' : '0'
+    });`}
 `;
 
 const Nestable: Component<Props> = (props) => {

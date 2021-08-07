@@ -40,7 +40,32 @@ const App: Component = () => {
                     return (
                       <button
                         onClick={() =>
-                          setModal({ Component: () => <div>Hello</div> })
+                          setModal({
+                            Component: () => {
+                              const { closeModal } = useModal();
+
+                              return (
+                                <div class="bg-white p-6 rounded-xl shadow w-80 h-48">
+                                  <h1 class="text-3xl font-bold mb-1">
+                                    Simple Modal
+                                  </h1>
+
+                                  <p class="text-gray-600">
+                                    This is a simple modal example created with
+                                    Guillotin.
+                                  </p>
+
+                                  <button
+                                    type="button"
+                                    onClick={closeModal}
+                                    class="transition duration-250 ease-in-out bg-red-600 hover:bg-red-700 rounded-lg px-6 py-3 text-white font-bold mt-4"
+                                  >
+                                    You can close it
+                                  </button>
+                                </div>
+                              );
+                            },
+                          })
                         }
                         type="button"
                       >
@@ -86,7 +111,21 @@ export default App;
 // };
 
 const ExampleModal = () => {
-  return <ModalContainer>My custom modal</ModalContainer>;
+  const { closeModal } = useModal();
+
+  return (
+    <ModalContainer>
+      <div>
+        <h1>Simple Modal</h1>
+
+        <p>This is a simple modal example created with Guillotin.</p>
+
+        <button type="button" onClick={closeModal}>
+          You can close it
+        </button>
+      </div>
+    </ModalContainer>
+  );
 };
 
 const ModalContainer: Component = styled('div')`
