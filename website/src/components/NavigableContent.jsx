@@ -59,39 +59,22 @@ const SectionItem = (props) => {
   const [hovered, setHovered] = createSignal(false);
 
   return (
-    <li class="relative">
+    <li
+      onMouseOver={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      class="relative flex justify-baseline items-center gap-2 hover:bg-gray-200 cursor-pointer"
+    >
       <a
-        onMouseOver={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
         href={`#${props.id}`}
-        class="
-        inline-block
-        px-6
-        py-2
-        hover:bg-gray-200
-        w-full
-        text-left text-lg
-        whitespace-no-wrap
-      "
+        class="inline-block px-6 py-2 w-full text-left text-lg flex-grow-0 truncate"
       >
-        {props.name}
+        <span style={`padding-left: ${props.level * 2}rem`}>{props.name}</span>
       </a>
 
       <Show when={hovered() || props.isViewing}>
-        <span
-          class="
-        absolute
-        inset-y-0
-        right-3
-        text-gray-400
-        flex
-        justify-center
-        items-center
-      "
-        >
+        <span class="w-6 h-6 text-gray-400 flex justify-center items-center mx-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
