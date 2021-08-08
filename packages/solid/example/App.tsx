@@ -110,9 +110,7 @@ export default App;
 //   return <p>{props.context.percentage()}</p>;
 // };
 
-const ExampleModal = () => {
-  const { closeModal } = useModal();
-
+const ExampleModal = (props) => {
   return (
     <ModalContainer>
       <div>
@@ -120,7 +118,7 @@ const ExampleModal = () => {
 
         <p>This is a simple modal example created with Guillotin.</p>
 
-        <button type="button" onClick={closeModal}>
+        <button type="button" onClick={props.closeModal}>
           You can close it
         </button>
       </div>

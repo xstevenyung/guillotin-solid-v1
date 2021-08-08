@@ -51,58 +51,62 @@ A fully-managed, renderless dialog component with great default, perfect for bui
 <Demo key="simple-modal" />
 
 <Markdown>
-## Simple Example
+## Simple Modal Example
 
 This example will illustrate how to create your first custom modal.
 </Markdown>
 
-<Code code={`import { ModalProvider, useModal } from '@guillotin/solid';
+<Code
+  href="https://codesandbox.io/s/relaxed-dan-r2d3h?file=/src/index.tsx"
+  code={`import { ModalProvider, useModal } from "@guillotin/solid";
 import { render } from "solid-js/web";
 
 const App = () => {
-	return (
-		{/* 1. We wrap our app with \`ModalProvider\`, behind the scene, Guillotin provide a Solid Context */}
-		<ModalProvider>
-			{/* This is where your app lives */}
-			<Trigger />
-		</ModalProvider>
-	);
+  return (
+    <>
+      {/* 1. We wrap our app with \`ModalProvider\`, behind the scene, Guillotin provide a Solid Context */}
+      <ModalProvider>
+        {/* This is where your app lives */}
+        <Trigger />
+      </ModalProvider>
+    </>
+  );
 };
 
 const Trigger = () => {
-	// Access our modal context
-	const {
-		setModal, // Function to open your custom modal component
-		closeModal, // Function to close the current open modal
-	} = useModal()
+  // Access our modal context
+  const {
+    setModal, // Function to open your custom modal component
+    closeModal // Function to close the current open modal
+  } = useModal();
 
-	return (
-		<button
-			onClick={() => setModal(CustomModal)} // 2. We open our custom modal using \`setModal\`
-			type="button"
-		>
-			Open my modal
-		</button>
-	)
-}
+  return (
+    <button
+      onClick={() => setModal({ Component: CustomModal })} // 2. We open our custom modal using \`setModal\`
+      type="button"
+    >
+      Open my modal
+    </button>
+  );
+};
 
 // All modal receive a function \`props.closeModal\` that you can call to close the modal
 const CustomModal = (props) => {
-	return (
-		<div style="padding: 1rem; background-color: #FFF;">
-			<h1>My first modal</h1>
+  return (
+    <div style="padding: 1rem; background-color: #FFF;">
+      <h1>My first modal</h1>
 
-			<button
-				onClick={props.closeModal} // 3. Call \`props.closeModal\` once you want to close the modal
-				type="button"
-			>
-				Close this modal
-			</button>
-		</div>
-	)
-}
+      <button
+        onClick={props.closeModal} // 3. Call \`props.closeModal\` once you want to close the modal
+        type="button"
+      >
+        Close this modal
+      </button>
+    </div>
+  );
+};
 
-render(() => <App />, document.getElementById('root'));`}></Code>
+render(() => <App />, document.getElementById("root"));`} />
 
 <Markdown>
 ## Pass data to your modal component
@@ -192,7 +196,7 @@ const App = () => {
 };
 ```
 
-## Advanced
+## Advanced Modal Options
 
 ### Use custom `z-index`
 
@@ -211,32 +215,186 @@ const App = () => {
 };
 ```
 
-## API References
+## Modal API References
 
 ```jsx
 import { ModalProvider, ModalBackground, useModal } from '@guillotin/solid';
 
 const App = () => {
-  <ModalProvider zIndex={99999} Background={ModalBackground}>
-    <Content />
-  </ModalProvider>;
+  return (
+    <ModalProvider zIndex={99999} Background={ModalBackground}>
+      <Content />
+    </ModalProvider>;
+  )
 };
 
 const Content = () => {
   const { setModal, closeModal } = useModal();
-  return null;
+  setModal({ Component: Modal, { title: 'Die Hard' } })
+  // ...
 };
+
+const Modal = (props) => {
+  const { closeModal } = useModal();
+
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <button onClick={closeModal} type="button">Close</button>
+    </div>
+  )
+}
 ```
 
 # Toaster
 
-A feature-full Toast system, flexbile enough to handle all your application requirement with full freedom of design.
+A feature-full toast system, flexbile enough to handle all your application requirement with full freedom of design.
 
 </Markdown>
+
 <Demo client:load key="simple-toast" />
 
 <Markdown>
+## Simple Toaster Example
 
+</Markdown>
+
+<Code
+  href="https://codesandbox.io/s/currying-grass-s4xn7?file=/src/index.tsx"
+  code={`import { ToasterProvider, useToaster } from "@guillotin/solid";
+import { render } from "solid-js/web";
+
+const App = () => {
+  return (
+    <>
+      {/* 1. We wrap our app with \`ToasterProvider\`, behind the scene, Guillotin provide a Solid Context */}
+      <ToasterProvider>
+        {/* This is where your app lives */}
+        <Trigger />
+      </ToasterProvider>
+    </>
+  );
+};
+
+const Trigger = () => {
+  // Access our toaster context
+  const {
+    addToast, // Function to open your custom toast component
+    dismissToast // Function to dismiss toast component
+  } = useToaster({ x: 'center', y: 'bottom' }); // We need to pass an x and y where we want to add our toast
+
+  return (
+    <button
+      onClick={() => addToast(CustomToast)} // 2. We open our custom toast using \`addToast\`
+      type="button"
+    >
+      Send New Toast
+    </button>
+  );
+};
+
+const CustomToast = () => {
+  return (
+    <div style="background-color: rgba(17, 24, 39, 1); border-radius: 0.5rem; padding-top: 1rem; padding-bottom: 1rem; padding-left: 2rem; padding-right: 2rem; color: rgba(255, 255, 255, 1);">
+      <span>Loading...</span>
+    </div>
+  );
+};
+
+render(() => <App />, document.getElementById("root"));`} />
+
+<Markdown>
+## Passing data your Toast
+
+You can pass any data to your toast component:
+
+```jsx
+import { addToast } from "@guillotin/solid";
+
+const Toast = (props) => {
+  return (
+    <div>
+      <span>Hello, {props.name}</span>
+    </div>
+  );
+};
+
+addToast(Toast, { name: "Steven" })
+```
+
+## Progress bar
+
+Guillotin provides a `props.context.percentage` as a Solid Signal to each toast component.
+
+```jsx
+import { addToast } from "@guillotin/solid";
+
+const Toast = (props) => {
+  return (
+    <div>
+      <span>Toast with a progress bar</span>
+      <div style={`width: ${props.context.percentage()}%; height: 2px; background-color: rgba(209, 250, 229, 1;`} />
+    </div>
+  );
+};
+
+addToast(Toast);
+```
+
+## Available positions
+
+Guillotin provides multiple available position to position each toast:
+- `x` can be `"left"`, `"right"` and `"center"`
+- `y` can be `"top"`, `"bottom"` and `"center"`
+
+## Advanced Toaster Options
+
+### Enable only specific positions
+
+By default, `ToasterProvider` will enable all positions listed above but it's possible to enable only specific positions by specifying the `positions` props
+
+```jsx
+import { ToasterProvider } from "@guillotin/solid";
+
+<ToasterProvider positions={[ { x: 'center', y: 'top' }, { x: 'right', y: 'bottom' } ]}>
+  {/* The rest of your app here */}
+</ToasterProvider>
+```
+
+## Toaster API Reference
+
+```jsx
+import { ToasterProvider, useToaster } from "@guillotin/solid";
+
+const App = () => {
+  return (
+    <ToasterProvider
+      positions={[ {x: "left", y: "bottom" } ]}
+      nested={false} // put as `true` to wrap into a container instead of the whole viewport, default to `false`
+    >
+      <Content />
+    </ToasterProvider>
+  );
+};
+
+const Content = () => {
+  const { addToast, dismissToast } = useToaster({ x: "left", y: "bottom" });
+  const toast = addToast(Toast, { message: "Hello World!" }); // add the toast and get back the toast object
+  dismiss(toast); // You can dismiss from the toast object
+  // ...
+};
+
+const Toast = (props) => {
+  props.context.percentage() // percentage from 100 to 0 from the duration
+
+  return (
+    <div>
+      <p>{props.message}</p>
+      <button onClick={props.dismiss} type="button">Close</button>
+    </div>
+  )
+}
+```
 </Markdown>
 
 </DocsLayout>

@@ -5,8 +5,8 @@ const { code, href } = Astro.props
 ---
 
 <div class="relative bg-gray-800 pt-0.5 rounded-lg">
-	<div class="absolute top-0 right-0 py-4 px-2">
-		<a href="https://codesandbox.io/" target="_blank" class="py-2 px-4 hover:bg-gray-700 rounded-lg text-sm flex gap-1 items-center" style="text-decoration: none; font-weight: 300; color: white;">
+	<div class="absolute top-0 right-0 p-4">
+		<a href={href} target="_blank" class="py-2 px-4 hover:bg-gray-700 rounded-lg text-sm flex gap-1 items-center" style="text-decoration: none; font-weight: 300; color: white;">
 			<span>Tinker in CodeSandbox</span>
 
 			<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
