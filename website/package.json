@@ -15,6 +15,7 @@
     "tailwindcss": "^2.2.7"
   },
   "dependencies": {
+    "clipboard": "^2.0.8",
     "solid-js": "^1.0.7"
   }
 }
