@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build"
+    "build": "astro build",
+    "deploy": "netlify deploy --prod"
   },
   "devDependencies": {
     "@astrojs/renderer-solid": "^0.1.0",
     "@tailwindcss/typography": "^0.4.1",
     "astro": "^0.18.8",
+    "netlify-cli": "^6.0.8",
     "tailwindcss": "^2.2.7"
   },
   "dependencies": {

@@ -120,6 +120,7 @@ importers:
       '@astrojs/renderer-solid': ^0.1.0
       '@tailwindcss/typography': ^0.4.1
       astro: ^0.18.8
+      netlify-cli: ^6.0.8
       solid-js: ^1.0.7
       tailwindcss: ^2.2.7
     dependencies:
@@ -128,6 +129,7 @@ importers:
       '@astrojs/renderer-solid': 0.1.0
       '@tailwindcss/typography': 0.4.1_tailwindcss@2.2.7
       astro: 0.18.9
+      netlify-cli: 6.0.8
       tailwindcss: 2.2.7
 
 packages:
@@ -2996,7 +2998,7 @@ packages:
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
-      picomatch: 2.2.3
+      picomatch: 2.3.0
       rollup: 2.37.1
     dev: true
 
