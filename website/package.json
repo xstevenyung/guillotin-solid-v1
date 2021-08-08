@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "deploy": "netlify deploy --prod"
+    "deploy": "pnpm build && netlify deploy --prod"
   },
   "devDependencies": {
     "@astrojs/renderer-solid": "^0.1.0",
