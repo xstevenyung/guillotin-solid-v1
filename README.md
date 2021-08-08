@@ -1,4 +1,8 @@
-# Introduction
+# Guillotin
+
+Collection of Headless Components for demanding developers
+
+[Full documentation](https://guillotin.netlify.app/docs)
 
 ## What is Guillotin?
 
@@ -33,3 +37,5 @@ Guillotin is compatible with Solid.js `v1.0.0+`.
 ### Choose a component and use it
 
 At the moment, Guillotin only include 2 components, [Toaster](http://localhost:3000/docs#toaster) and [Modal](http://localhost:3000/docs#modal). We are working on increasing the size of the library. If you have any suggestions of what component we could add, feel free to [send me a Tweet](https://twitter.com/intent/tweet?original_referer=guillotin.recodable.io&text=I%20love%20Guillotin%20but%20we%20need%20a%20X%20component!%20@xstevenyung)
+
+[Full documentation](https://guillotin.netlify.app/docs)
