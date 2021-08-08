@@ -1,7 +1,8 @@
 ---
 import DocsLayout from "../layouts/DocsLayout.astro"
-import { Markdown } from "astro/components"
+import { Markdown, Prism } from "astro/components"
 import Demo from "../components/Demo.jsx"
+import Code from "../components/Code.astro"
 ---
 
 <DocsLayout>
@@ -53,14 +54,14 @@ A fully-managed, renderless dialog component with great default, perfect for bui
 ## Simple Example
 
 This example will illustrate how to create your first custom modal.
+</Markdown>
 
-```jsx
-import { ModalProvider, useModal } from '@guillotin/solid';
+<Code code={`import { ModalProvider, useModal } from '@guillotin/solid';
 import { render } from "solid-js/web";
 
 const App = () => {
 	return (
-		{/* 1. We wrap our app with `ModalProvider`, behind the scene, Guillotin provide a Solid Context */}
+		{/* 1. We wrap our app with \`ModalProvider\`, behind the scene, Guillotin provide a Solid Context */}
 		<ModalProvider>
 			{/* This is where your app lives */}
 			<Trigger />
@@ -77,7 +78,7 @@ const Trigger = () => {
 
 	return (
 		<button
-			onClick={() => setModal(CustomModal)} // 2. We open our custom modal using `setModal`
+			onClick={() => setModal(CustomModal)} // 2. We open our custom modal using \`setModal\`
 			type="button"
 		>
 			Open my modal
@@ -85,14 +86,14 @@ const Trigger = () => {
 	)
 }
 
-// All modal receive a function `props.closeModal` that you can call to close the modal
+// All modal receive a function \`props.closeModal\` that you can call to close the modal
 const CustomModal = (props) => {
 	return (
 		<div style="padding: 1rem; background-color: #FFF;">
 			<h1>My first modal</h1>
 
 			<button
-				onClick={props.closeModal} // 3. Call `props.closeModal` once you want to close the modal
+				onClick={props.closeModal} // 3. Call \`props.closeModal\` once you want to close the modal
 				type="button"
 			>
 				Close this modal
@@ -101,11 +102,9 @@ const CustomModal = (props) => {
 	)
 }
 
-render(() => <App />, document.getElementById('root'));
-```
+render(() => <App />, document.getElementById('root'));`}></Code>
 
-Or try in CodeSandBox.
-
+<Markdown>
 ## Pass data to your modal component
 
 It's likely that you want to pass data to your modal. You can pass an object of data as the second parameter of `setModal`.
@@ -230,7 +229,14 @@ const Content = () => {
 ```
 
 # Toaster
+
+A feature-full Toast system, flexbile enough to handle all your application requirement with full freedom of design.
+
 </Markdown>
 <Demo client:load key="simple-toast" />
+
+<Markdown>
+
+</Markdown>
 
 </DocsLayout>
