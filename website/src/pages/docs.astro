@@ -324,9 +324,27 @@ const Toast = (props) => {
 addToast(Toast, { name: "Steven" })
 ```
 
+## Change duration of an individual toast
+
+By default, the `<ToasterProvider />` will default all toast to 3000ms. If you want an individual toast to display for more or less, you can specify a custom `duration` in the 3rd argument of `addToast`:
+
+```jsx
+import { addToast } from "@guillotin/solid";
+
+const Toast = (props) => {
+  return (
+    <div>
+      <span>Hello, {props.name}</span>
+    </div>
+  );
+};
+
+addToast(Toast, { name: "Steven" }, { duration: 1000 }); // will display for 1000ms instead of the default 3000ms
+```
+
 ## Progress bar
 
-Guillotin provides a `props.context.percentage` as a Solid Signal to each toast component.
+Guillotin provides a `props.context.percentage` as a Solid Signal to each toast component which start at 100 and decrease to 0 when the toast should disappear (depending of the duration).
 
 ```jsx
 import { addToast } from "@guillotin/solid";
@@ -373,6 +391,10 @@ const App = () => {
     <ToasterProvider
       positions={[ {x: "left", y: "bottom" } ]}
       nested={false} // put as `true` to wrap into a container instead of the whole viewport, default to `false`
+      config={{
+        max: null, // maximum toast notification per bag, `null` means infinite toasts
+        duration: 3000, // default duration for all future toast if not define w/ `addToast`
+      }} 
     >
       <Content />
     </ToasterProvider>
@@ -381,13 +403,18 @@ const App = () => {
 
 const Content = () => {
   const { addToast, dismissToast } = useToaster({ x: "left", y: "bottom" });
-  const toast = addToast(Toast, { message: "Hello World!" }); // add the toast and get back the toast object
-  dismiss(toast); // You can dismiss from the toast object
+  const toast = addToast(
+    Toast, // your custom Toast component that will display
+    { message: "Hello World!" }, // optional: The props that are going to be given to the toast
+    { duration: 3000 }, // optional: duration to display the toast
+  );
+
+  dismiss(toast); // You can dismiss manually using the toast object
   // ...
 };
 
 const Toast = (props) => {
-  props.context.percentage() // percentage from 100 to 0 from the duration
+  props.context.percentage() // percentage from 100 to 0 from the duration and remaining time
 
   return (
     <div>
