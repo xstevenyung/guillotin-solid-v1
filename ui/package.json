@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "hasInstallScript": true,
+  "license": "MIT",
   "scripts": {
     "start": "vite",
     "dev": "vite",
@@ -10,7 +11,6 @@
     "serve": "vite preview",
     "deploy": "pnpm build && netlify deploy --prod"
   },
-  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.3.1",
     "netlify-cli": "^6.0.8",
@@ -20,7 +20,7 @@
     "vite-plugin-solid": "^2.0.1"
   },
   "dependencies": {
-    "@guillotin/solid": "workspace:^0.0.5",
+    "@guillotin/solid": "workspace:^0.1.0",
     "solid-app-router": "^0.1.4",
     "solid-js": "^1.0.7"
   }
