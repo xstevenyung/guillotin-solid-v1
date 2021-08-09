@@ -20,6 +20,7 @@ export type Toast = {
   id: number;
   Component: Component;
   data: object;
+  config: Config;
 };
 
 export * from '../types';

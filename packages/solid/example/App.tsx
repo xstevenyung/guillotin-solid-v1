@@ -30,6 +30,19 @@ const App: Component = () => {
                 open toast
               </button>
 
+              <button
+                type="button"
+                onClick={() =>
+                  addToast(
+                    ExampleNotification,
+                    { message: 'custom duration' },
+                    { duration: 500 },
+                  )
+                }
+              >
+                open custom duration toast
+              </button>
+
               <div style="width: 200px; height: 200px; background: red;">
                 <ModalProvider
                   Background={() => <ModalBackground backgroundColor="green" />}

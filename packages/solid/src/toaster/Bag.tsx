@@ -10,7 +10,6 @@ import Nestable from '../utils/Nestable';
 
 interface Props extends Partial<Position> {
   nested?: boolean;
-  config: Config;
 }
 
 const ToasterBag: Component<Props> = (props) => {
@@ -19,10 +18,7 @@ const ToasterBag: Component<Props> = (props) => {
   return (
     <Nestable nested={props.nested} x={props.x} y={props.y}>
       <TransitionGroup name="scale">
-        <ToastList
-          position={{ x: props.x, y: props.y }}
-          config={props.config}
-        />
+        <ToastList position={{ x: props.x, y: props.y }} />
       </TransitionGroup>
     </Nestable>
   );
@@ -30,9 +26,7 @@ const ToasterBag: Component<Props> = (props) => {
 
 export default ToasterBag;
 
-const ToastList: Component<{ position: Position; config: Config }> = (
-  props,
-) => {
+const ToastList: Component<{ position: Position }> = (props) => {
   const { state, dismissToast } = useToaster(props.position);
 
   return (
@@ -46,7 +40,7 @@ const ToastList: Component<{ position: Position; config: Config }> = (
           <WrapperContainer>
             <ToastWrapper
               dismiss={dismiss}
-              duration={props.config.duration}
+              duration={toast.config.duration}
               // @ts-ignore
               children={(context) => (
                 <Dynamic<ToastProps>

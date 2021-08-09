@@ -1,10 +1,4 @@
-import {
-  useContext,
-  createContext,
-  mergeProps,
-  createMemo,
-  createEffect,
-} from 'solid-js';
+import { useContext, createContext, mergeProps, createMemo } from 'solid-js';
 import type { Component } from 'solid-js';
 import { For } from 'solid-js/web';
 import ToasterBag from './Bag';
@@ -29,7 +23,11 @@ type State = {
   toasts: Toast[];
 };
 
-type AddFunction = (Component: ToastComponent, data?: object) => Toast;
+type AddFunction = (
+  Component: ToastComponent,
+  data?: object,
+  config?: Partial<Config>,
+) => Toast;
 
 type DismissFunction = (toast: Toast) => void;
 
@@ -39,19 +37,26 @@ type ToasterBagStore = {
   dismissToast: DismissFunction;
 };
 
-const createToasterBagStore: (config: Config) => ToasterBagStore = (config) => {
+const createToasterBagStore: (Config) => ToasterBagStore = (
+  toasterBagConfig,
+) => {
   const [state, setState] = createStore<State>({
     toasts: [],
   });
 
-  const addToast: AddFunction = (Component, data = {}) => {
-    const newToast: Toast = { id: id++, Component, data };
+  const addToast: AddFunction = (Component, data = {}, config = {}) => {
+    const newToast: Toast = {
+      id: id++,
+      Component,
+      data,
+      config: { ...toasterBagConfig, ...config },
+    };
 
     const newToasts = [...state.toasts, newToast];
 
     setState({
-      toasts: config.max
-        ? newToasts.slice(newToasts.length - config.max)
+      toasts: toasterBagConfig.max
+        ? newToasts.slice(newToasts.length - toasterBagConfig.max)
         : newToasts,
     });
 
@@ -96,9 +101,7 @@ const ToasterProvider: Component<{
 
       <div style="position: relative; width: 100%; height: 100%;">
         <For each={props.positions}>
-          {(position) => (
-            <ToasterBag {...position} nested={props.nested} config={config()} />
-          )}
+          {(position) => <ToasterBag {...position} nested={props.nested} />}
         </For>
       </div>
     </ToasterContext.Provider>
