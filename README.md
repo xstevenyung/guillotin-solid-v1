@@ -36,6 +36,6 @@ Guillotin is compatible with Solid.js `v1.0.0+`.
 
 ### Choose a component and use it
 
-At the moment, Guillotin only include 2 components, [Toaster](https://guillotin.recodable.io/docs#toaster) and [Modal](https://guillotin.recodable.io/docs#modal). We are working on increasing the size of the library. If you have any suggestions of what component we could add, feel free to [send me a Tweet](https://twitter.com/intent/tweet?original_referer=guillotin.recodable.io&text=I%20love%20Guillotin%20but%20we%20need%20a%20X%20component!%20@xstevenyung)
+At the moment, Guillotin only include 2 components, [Toaster](https://guillotin.recodable.io/docs#toaster) and [Modal](https://guillotin.recodable.io/docs#modal). We are working on increasing the size of the library. If you have any suggestions of what component we could add, feel free to [open an issue](https://github.com/recodable/guillotin/issues/new?assignees=&labels=&template=feature_request.md&title=).
 
 [Full documentation](https://guillotin.recodable.io/docs)
