@@ -48,7 +48,7 @@ At the moment, Guillotin only include 2 components, [Toaster](#toaster) and [Mod
 A fully-managed, renderless dialog component with great default, perfect for building completely custom modal and dialog windows for your next application.
 </Markdown>
 
-<Demo key="simple-modal" />
+<Demo client:visible key="simple-modal" title="Simple Modal Example" />
 
 <Markdown>
 ## Simple Modal Example
@@ -57,6 +57,7 @@ This example will illustrate how to create your first custom modal.
 </Markdown>
 
 <Code
+  name="Simple Modal"
   href="https://codesandbox.io/s/relaxed-dan-r2d3h?file=/src/index.tsx"
   code={`import { ModalProvider, useModal } from "@guillotin/solid";
 import { render } from "solid-js/web";
@@ -252,7 +253,7 @@ A feature-full toast system, flexbile enough to handle all your application requ
 
 </Markdown>
 
-<Demo client:load key="simple-toast" />
+<Demo client:load key="simple-toast" title="Simple Toast Example" />
 
 <Markdown>
 ## Simple Toaster Example
@@ -260,6 +261,7 @@ A feature-full toast system, flexbile enough to handle all your application requ
 </Markdown>
 
 <Code
+  name="Simple Toast"
   href="https://codesandbox.io/s/currying-grass-s4xn7?file=/src/index.tsx"
   code={`import { ToasterProvider, useToaster } from "@guillotin/solid";
 import { render } from "solid-js/web";

@@ -67,6 +67,7 @@ const SectionItem = (props) => {
       <a
         href={`#${props.id}`}
         class="inline-block px-6 py-2 w-full text-left text-lg flex-grow-0 truncate"
+        title={`${props.name} section`}
       >
         <span
           classList={{ 'font-bold text-xl': props.level === 0 }}
