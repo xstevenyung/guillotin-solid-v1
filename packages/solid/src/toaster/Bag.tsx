@@ -4,12 +4,13 @@ import { For, Dynamic } from 'solid-js/web';
 import { styled } from 'solid-styled-components';
 import ToastWrapper from './ToastWrapper';
 import { TransitionGroup } from 'solid-transition-group';
-import type { ToastProps, Position } from './types';
+import type { ToastProps, Position, Config } from './types';
 import { useToaster } from './Provider';
 import Nestable from '../utils/Nestable';
 
 interface Props extends Partial<Position> {
   nested?: boolean;
+  config: Config;
 }
 
 const ToasterBag: Component<Props> = (props) => {
@@ -18,7 +19,10 @@ const ToasterBag: Component<Props> = (props) => {
   return (
     <Nestable nested={props.nested} x={props.x} y={props.y}>
       <TransitionGroup name="scale">
-        <ToastList position={{ x: props.x, y: props.y }} />
+        <ToastList
+          position={{ x: props.x, y: props.y }}
+          config={props.config}
+        />
       </TransitionGroup>
     </Nestable>
   );
@@ -26,7 +30,9 @@ const ToasterBag: Component<Props> = (props) => {
 
 export default ToasterBag;
 
-const ToastList: Component<{ position: Position }> = (props) => {
+const ToastList: Component<{ position: Position; config: Config }> = (
+  props,
+) => {
   const { state, dismissToast } = useToaster(props.position);
 
   return (
@@ -40,6 +46,7 @@ const ToastList: Component<{ position: Position }> = (props) => {
           <WrapperContainer>
             <ToastWrapper
               dismiss={dismiss}
+              duration={props.config.duration}
               // @ts-ignore
               children={(context) => (
                 <Dynamic<ToastProps>

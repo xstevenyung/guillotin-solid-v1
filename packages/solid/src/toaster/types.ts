@@ -1,5 +1,10 @@
 import type { Accessor, Component } from 'solid-js';
 
+export type Config = {
+  duration: number;
+  max: number;
+};
+
 export type Context = {
   percentage: Accessor<number>;
 };

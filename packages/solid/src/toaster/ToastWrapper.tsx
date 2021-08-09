@@ -1,4 +1,4 @@
-import { DEFAULT_DURATION, TICK } from './constants';
+import { TICK } from './constants';
 import {
   Component,
   createSignal,
@@ -10,13 +10,13 @@ import type { Context } from './types';
 
 export type Props = {
   dismiss: () => void;
-  duration?: number;
+  duration: number;
   children: (context: Context) => JSX.Element;
 };
 
 const ToastWrapper: Component<Props> = (props) => {
   const [remainingDuration, setRemainingDuration] = createSignal(
-    props.duration || DEFAULT_DURATION,
+    props.duration,
   );
   const tick = () => setRemainingDuration(remainingDuration() - TICK);
   const [timerRunning, setTimerRunning] = createSignal(true);
@@ -28,9 +28,7 @@ const ToastWrapper: Component<Props> = (props) => {
   });
 
   const percentage = () => {
-    const computed = Math.round(
-      (remainingDuration() * 100) / (props.duration || DEFAULT_DURATION),
-    );
+    const computed = Math.round((remainingDuration() * 100) / props.duration);
 
     return computed >= 0 ? computed : 0;
   };

@@ -7,7 +7,7 @@ import ExampleNotification from './Notification';
 const App: Component = () => {
   return (
     <ModalProvider>
-      <ToasterProvider>
+      <ToasterProvider config={{ duration: 5000, max: 1 }}>
         {() => {
           const { setModal } = useModal();
           const { addToast } = useToaster({ x: 'left', y: 'top' });

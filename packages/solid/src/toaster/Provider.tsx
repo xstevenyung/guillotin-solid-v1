@@ -1,9 +1,16 @@
-import { useContext, createContext, mergeProps } from 'solid-js';
+import {
+  useContext,
+  createContext,
+  mergeProps,
+  createMemo,
+  createEffect,
+} from 'solid-js';
 import type { Component } from 'solid-js';
 import { For } from 'solid-js/web';
 import ToasterBag from './Bag';
-import type { Position, ToastComponent, Toast } from './types';
+import type { Position, ToastComponent, Toast, Config } from './types';
 import { createStore } from 'solid-js/store';
+import { DEFAULT_CONFIG } from './constants';
 
 let id = 1;
 
@@ -32,7 +39,7 @@ type ToasterBagStore = {
   dismissToast: DismissFunction;
 };
 
-const createToasterBagStore: () => ToasterBagStore = () => {
+const createToasterBagStore: (config: Config) => ToasterBagStore = (config) => {
   const [state, setState] = createStore<State>({
     toasts: [],
   });
@@ -40,7 +47,13 @@ const createToasterBagStore: () => ToasterBagStore = () => {
   const addToast: AddFunction = (Component, data = {}) => {
     const newToast: Toast = { id: id++, Component, data };
 
-    setState({ toasts: [...state.toasts, newToast] });
+    const newToasts = [...state.toasts, newToast];
+
+    setState({
+      toasts: config.max
+        ? newToasts.slice(newToasts.length - config.max)
+        : newToasts,
+    });
 
     return newToast;
   };
@@ -58,26 +71,39 @@ const resolveKey = ({ x, y }: Position) => {
   return [x, y].join('-');
 };
 
-const ToasterProvider: Component<{ positions?: Position[]; nested?: boolean }> =
-  (props) => {
-    props = mergeProps({ positions: availablePositions, nested: false }, props);
+const ToasterProvider: Component<{
+  positions?: Position[];
+  nested?: boolean;
+  config?: Partial<Config>;
+}> = (props) => {
+  props = mergeProps(
+    { positions: availablePositions, nested: false, config: {} },
+    props,
+  );
 
-    const bags = props.positions.reduce((acc, position) => {
-      return { ...acc, [resolveKey(position)]: createToasterBagStore() };
-    }, {});
+  const config = createMemo<Config>(() => ({
+    ...DEFAULT_CONFIG,
+    ...props.config,
+  }));
 
-    return (
-      <ToasterContext.Provider value={bags}>
-        {props.children}
+  const bags = props.positions.reduce((acc, position) => {
+    return { ...acc, [resolveKey(position)]: createToasterBagStore(config()) };
+  }, {});
 
-        <div style="position: relative; width: 100%; height: 100%;">
-          <For each={props.positions}>
-            {(position) => <ToasterBag {...position} nested={props.nested} />}
-          </For>
-        </div>
-      </ToasterContext.Provider>
-    );
-  };
+  return (
+    <ToasterContext.Provider value={bags}>
+      {props.children}
+
+      <div style="position: relative; width: 100%; height: 100%;">
+        <For each={props.positions}>
+          {(position) => (
+            <ToasterBag {...position} nested={props.nested} config={config()} />
+          )}
+        </For>
+      </div>
+    </ToasterContext.Provider>
+  );
+};
 
 export default ToasterProvider;
 
