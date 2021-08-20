@@ -12,17 +12,16 @@ export default defineConfig({
       name: pkg.name,
       fileName: 'index',
     },
-    minify: false,
-  },
 
-  rollupOptions: {
-    external: ['vue'],
+    rollupOptions: {
+      external: ['vue'],
 
-    output: {
-      // Provide global variables to use in the UMD build
-      // for externalized deps
-      globals: {
-        vue: 'Vue',
+      output: {
+        // Provide global variables to use in the UMD build
+        // for externalized deps
+        globals: {
+          vue: 'Vue',
+        },
       },
     },
   },
