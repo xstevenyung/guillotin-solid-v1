@@ -12,6 +12,10 @@ export default defineComponent({
 
     provide(MODAL, { Modal });
 
+    function close() {
+      Modal.value = null;
+    }
+
     return { Modal };
   },
 });
@@ -24,7 +28,9 @@ export default defineComponent({
     <Transition name="fade">
       <div v-if="Modal">
         <div :style="{ 'z-index': 99999 }">
-          <Background @click="Modal = null" />
+          <slot name="background" :close="close">
+            <Background @click="close" />
+          </slot>
         </div>
 
         <PositionableContainer
