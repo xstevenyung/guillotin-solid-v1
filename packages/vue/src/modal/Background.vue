@@ -9,8 +9,8 @@ export default defineComponent({});
     :style="{
       'background-color': 'rgba(229, 231, 235)',
       opacity: 0.8,
-      ...$attrs.style,
     }"
+    v-bind="$attrs"
   />
 </template>
 

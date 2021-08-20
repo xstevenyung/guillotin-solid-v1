@@ -38,7 +38,7 @@ export default defineComponent({
           y="center"
           :style="{ 'z-index': 10000 }"
         >
-          <Component :is="Modal" :closeModal="() => (Modal = null)" />
+          <Component :is="Modal" :close="close" />
         </PositionableContainer>
       </div>
     </Transition>
