@@ -15,7 +15,8 @@
   "scripts": {
     "dev": "vite ./example --config ./vite.config.js",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
     "vue": "^3.0.5"
