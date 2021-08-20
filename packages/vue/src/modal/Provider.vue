@@ -16,7 +16,7 @@ export default defineComponent({
       Modal.value = null;
     }
 
-    return { Modal };
+    return { Modal, close };
   },
 });
 </script>
