@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "vue": "pnpm --filter @guillotin/vue",
     "solid": "pnpm --filter @guillotin/solid",
     "website": "pnpm --filter @guillotin/website",
     "ui": "pnpm --filter @guillotin/ui"
