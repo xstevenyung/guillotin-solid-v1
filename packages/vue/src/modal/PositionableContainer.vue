@@ -12,7 +12,6 @@ export default defineComponent({
 
 <template>
   <div
-    class="container"
     :class="{
       'x-center': x === 'center',
       'y-center': y === 'center',
@@ -27,26 +26,26 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.container {
+div {
   position: fixed;
   z-index: 99999;
 }
 
-.container.nested {
+div.nested {
   position: absolute;
 }
 
-.container.x-center {
+div.x-center {
   left: 50%;
   transform: translate(-50%, 0);
 }
 
-.container.y-center {
+div.y-center {
   top: 50%;
   transform: translate(-50%, 0);
 }
 
-.container.x-center.y-center {
+div.x-center.y-center {
   transform: translate(-50%, -50%);
 }
 </style>

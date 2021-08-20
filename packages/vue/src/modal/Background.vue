@@ -6,7 +6,6 @@ export default defineComponent({});
 
 <template>
   <div
-    class="container"
     :style="{
       'background-color': 'rgba(229, 231, 235)',
       opacity: 0.8,
@@ -16,7 +15,7 @@ export default defineComponent({});
 </template>
 
 <style scoped>
-.container {
+div {
   position: fixed;
   top: 0;
   right: 0;
