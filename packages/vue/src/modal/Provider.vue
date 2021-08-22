@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Transition, provide, defineComponent, shallowRef } from 'vue';
+import { Transition, provide, defineComponent, shallowRef, ref } from 'vue';
 import Background from './Background.vue';
 import { MODAL } from './constants';
 import PositionableContainer from './PositionableContainer.vue';
@@ -9,8 +9,9 @@ export default defineComponent({
 
   setup() {
     const Modal = shallowRef(null);
+    const data = ref({});
 
-    provide(MODAL, { Modal });
+    provide(MODAL, { Modal, data });
 
     function close() {
       Modal.value = null;
@@ -38,7 +39,7 @@ export default defineComponent({
           y="center"
           :style="{ 'z-index': 10000 }"
         >
-          <Component :is="Modal" :close="close" />
+          <Component :is="Modal" :close="close" v-bind="data" />
         </PositionableContainer>
       </div>
     </Transition>
