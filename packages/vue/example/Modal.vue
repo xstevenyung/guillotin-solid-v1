@@ -4,13 +4,14 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   props: {
     close: Function,
+    name: String,
   },
 });
 </script>
 
 <template>
   <div class="container">
-    <p>Hello</p>
+    <p>Hello, {{ name }}</p>
     <button type="button" @click="close">Close</button>
   </div>
 </template>

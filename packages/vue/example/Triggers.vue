@@ -13,5 +13,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <button type="button" @click="setModal(Modal)">Open</button>
+  <button type="button" @click="setModal(Modal, { name: 'Steven' })">
+    Open
+  </button>
 </template>

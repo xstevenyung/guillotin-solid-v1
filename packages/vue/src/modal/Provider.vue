@@ -15,9 +15,10 @@ export default defineComponent({
 
     function close() {
       Modal.value = null;
+      data.value = {};
     }
 
-    return { Modal, close };
+    return { Modal, close, data };
   },
 });
 </script>
