@@ -6,46 +6,50 @@ export default defineComponent({
   props: {
     x: { type: String as PropType<XPosition>, required: true },
     y: { type: String as PropType<YPosition>, required: true },
+    nested: { type: Boolean, default: false },
   },
 });
 </script>
 
 <template>
-  <div
-    :class="{
-      'x-center': x === 'center',
-      'y-center': y === 'center',
-    }"
-    :style="{
-      ...(x !== 'center' ? { [x]: 0 } : {}),
-      ...(y !== 'center' ? { [y]: 0 } : {}),
-    }"
-  >
-    <slot />
+  <div class="container" :class="{ nested }">
+    <div
+      class="positioner"
+      :class="{
+        'x-center': x === 'center',
+        'y-center': y === 'center',
+      }"
+    >
+      <slot />
+    </div>
   </div>
 </template>
 
 <style scoped>
-div {
+.container {
   position: fixed;
   z-index: 99999;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
-div.nested {
+.container.nested {
   position: absolute;
 }
 
-div.x-center {
-  left: 50%;
-  transform: translate(-50%, 0);
+.positioner {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
-div.y-center {
-  top: 50%;
-  transform: translate(-50%, 0);
+.x-center {
+  justify-content: center;
 }
 
-div.x-center.y-center {
-  transform: translate(-50%, -50%);
+.y-center {
+  align-items: center;
 }
 </style>
