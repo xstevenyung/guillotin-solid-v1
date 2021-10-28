@@ -1,4 +1,4 @@
-import { Config } from './types';
+import { Config, Position } from './types';
 
 export const DEFAULT_ANIMATION_DURATION = 200;
 export let TICK = 100;

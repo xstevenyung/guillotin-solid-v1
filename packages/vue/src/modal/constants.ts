@@ -1,1 +1,1 @@
-export const MODAL = 'guillotin-modal';
+export const MODAL = Symbol();
