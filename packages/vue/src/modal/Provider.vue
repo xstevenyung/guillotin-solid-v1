@@ -2,21 +2,21 @@
 import { Transition, provide, defineComponent, shallowRef, ref } from 'vue';
 import Background from './Background.vue';
 import { MODAL } from './constants';
-import PositionableContainer from './PositionableContainer.vue';
+import Positionable from './Positionable.vue';
 
 export default defineComponent({
-  components: { Transition, Background, PositionableContainer },
+  components: { Transition, Background, Positionable },
 
   setup() {
     const Modal = shallowRef(null);
     const data = ref({});
 
-    provide(MODAL, { Modal, data });
-
     function close() {
       Modal.value = null;
       data.value = {};
     }
+
+    provide(MODAL, { Modal, data, close });
 
     return { Modal, close, data };
   },
@@ -30,18 +30,14 @@ export default defineComponent({
     <Transition name="fade">
       <div v-if="Modal">
         <div :style="{ 'z-index': 99999 }">
-          <slot name="background" :close="close">
+          <slot name="background" v-bind="{ close }">
             <Background @click="close" />
           </slot>
         </div>
 
-        <PositionableContainer
-          x="center"
-          y="center"
-          :style="{ 'z-index': 10000 }"
-        >
+        <Positionable x="center" y="center" :style="{ 'z-index': 10000 }">
           <Component :is="Modal" :close="close" v-bind="data" />
-        </PositionableContainer>
+        </Positionable>
       </div>
     </Transition>
   </div>
