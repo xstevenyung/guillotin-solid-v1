@@ -1,3 +1,5 @@
+> Deprecation: Due to lack of time, this package is now deprecated.
+
 # Guillotin
 
 Collection of Headless Components for demanding developers
